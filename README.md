@@ -7,8 +7,8 @@
 
 **Aplicación móvil nativa para Android que permite digitalizar prendas con la cámara del celular, organizar un armario virtual inteligente y probar combinaciones de outfits sobre una silueta anatómica interactiva (Vestier Virtual 2.5D).**
 
-> Proyecto desarrollado para la asignatura de **Seminario de Investigación** — UNICOLOMBO  
-> Estudiante: Ricardo Antonio Lopez Perez | Docente: Carlos Castro
+> Proyecto desarrollado para la asignatura de **Seminario de Investigación** y **emprendimiento**— UNICOLOMBO  
+> Estudiante: Ricardo Antonio Lopez Perez, Freys torres, Kenneth ruiz, juan camilo moreno | Docente: Carlos Castro
 
 ---
 
