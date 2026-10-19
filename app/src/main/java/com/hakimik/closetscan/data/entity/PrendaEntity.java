@@ -4,12 +4,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad que representa una prenda en el armario digital.
- * Los atributos visuales son extraídos automáticamente por el módulo de visión artificial (IA).
- *
- * Proyecto: Closet/Scan — Vestier Digital Interactivo con IA
- * Asignatura: Seminario de Investigación — UNICOLOMBO
- * Estudiante: Ricardo Antonio Lopez Perez
+ * Entidad de persistencia que representa una prenda en el armario digital.
+ * Almacena metadatos y atributos visuales detectados en el escaneo.
  */
 @Entity(tableName = "prendas")
 public class PrendaEntity {

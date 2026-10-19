@@ -6,12 +6,8 @@ import java.util.Map;
 /**
  * Motor de recomendación cromática para el sistema de matching de outfits.
  *
- * Utiliza una matriz de compatibilidad de colores basada en teoría del color
- * (colores neutros, complementarios y análogos) para sugerir prendas que combinan.
- *
- * Proyecto: Closet/Scan — Vestier Digital Interactivo con IA
- * Asignatura: Seminario de Investigación — UNICOLOMBO
- * Estudiante: Ricardo Antonio Lopez Perez
+ * Utiliza una matriz de compatibilidad basada en teoría del color (armonía complementaria,
+ * análoga y neutros) para sugerir combinaciones entre prendas superiores e inferiores.
  */
 public class RecomendadorEngine {
 

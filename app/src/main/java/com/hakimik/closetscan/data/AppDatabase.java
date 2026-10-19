@@ -17,11 +17,7 @@ import com.hakimik.closetscan.data.entity.PrendaEntity;
  *  - prendas: inventario del armario digital
  *  - outfits: combinaciones guardadas por el usuario
  *
- * Se implementa con el patrón Singleton para tener una sola instancia activa.
- *
- * Proyecto: Closet/Scan — Vestier Digital Interactivo con IA
- * Asignatura: Seminario de Investigación — UNICOLOMBO
- * Estudiante: Ricardo Antonio Lopez Perez
+ * Se implementa con el patrón Singleton para garantizar una única instancia activa.
  */
 @Database(
     entities = {PrendaEntity.class, OutfitEntity.class},

@@ -4,11 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad que representa un outfit (combinación de prendas) guardado por el usuario.
- *
- * Proyecto: Closet/Scan — Vestier Digital Interactivo con IA
- * Asignatura: Seminario de Investigación — UNICOLOMBO
- * Estudiante: Ricardo Antonio Lopez Perez
+ * Entidad de persistencia que representa una combinación (outfit) guardada por el usuario.
  */
 @Entity(tableName = "outfits")
 public class OutfitEntity {

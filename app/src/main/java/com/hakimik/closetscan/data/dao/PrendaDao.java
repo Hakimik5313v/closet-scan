@@ -14,11 +14,7 @@ import java.util.List;
 
 /**
  * DAO (Data Access Object) para operaciones CRUD de prendas en la base de datos local.
- * Room genera automáticamente la implementación de estos métodos en tiempo de compilación.
- *
- * Proyecto: Closet/Scan — Vestier Digital Interactivo con IA
- * Asignatura: Seminario de Investigación — UNICOLOMBO
- * Estudiante: Ricardo Antonio Lopez Perez
+ * Implementación generada automáticamente por Room en tiempo de compilación.
  */
 @Dao
 public interface PrendaDao {
