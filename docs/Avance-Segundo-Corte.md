@@ -6,9 +6,10 @@
 ---
 
 **Proyecto:** Closet/Scan — Vestier Digital Interactivo con IA y Realidad Aumentada  
-**Estudiante:** Ricardo Antonio Lopez Perez  
+**Integrantes:** Ricardo Antonio López Pérez, Freys Torres, Kenneth Ruiz, Juan Camilo Moreno  
 **Docente:** Carlos Castro  
-**Asignatura:** Seminario de Investigación  
+**Asignatura:** Seminario de Investigación / Emprendimiento  
+**Repositorio GitHub:** [https://github.com/lopezperezricardo0316-a11y/closet-scan](https://github.com/lopezperezricardo0316-a11y/closet-scan)  
 **Fecha de avance:** Octubre 2026  
 **Institución:** UNICOLOMBO  
 
