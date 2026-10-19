@@ -3,7 +3,7 @@
 ![Estado](https://img.shields.io/badge/Estado-En%20Desarrollo-6E56CF?style=flat-square)
 ![Plataforma](https://img.shields.io/badge/Plataforma-Android-green?style=flat-square&logo=android)
 ![Lenguaje](https://img.shields.io/badge/Lenguaje-Java-orange?style=flat-square&logo=java)
-![Materia](https://img.shields.io/badge/Materia-Seminario%20de%20Investigaci%C3%B3n-blue?style=flat-square)
+
 
 **Aplicación móvil nativa para Android que permite digitalizar prendas con la cámara del celular, organizar un armario virtual inteligente y probar combinaciones de outfits sobre una silueta anatómica interactiva (Vestier Virtual 2.5D).**
 
