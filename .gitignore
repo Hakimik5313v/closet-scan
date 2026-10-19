@@ -1,0 +1,27 @@
+# Android Studio
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+
+# APKs y keystores (no subir por seguridad)
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Archivos generados
+bin/
+gen/
+out/
+
+# Obsidian (notas personales)
+.obsidian/
+
+# Logs
+*.log
