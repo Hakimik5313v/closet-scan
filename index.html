@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#07080b">
+<title>Closet/Scan — Vestier Virtual de Alta Costura & Asesor IA</title>
+<!-- Google Fonts: Cormorant Garamond (Editorial) + Plus Jakarta Sans (Modern UI) + Space Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-dark: #07080b;
+    --bg-surface: #0f1118;
+    --bg-card: #151823;
+    --bg-card-hover: #1c202f;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-gold: rgba(212, 175, 55, 0.35);
+    
+    --gold: #d4af37;
+    --gold-light: #f3e5ab;
+    --gold-glow: rgba(212, 175, 55, 0.2);
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --accent-emerald: #10b981;
+    --accent-rose: #f43f5e;
+    --accent-violet: #8b5cf6;
+    --accent-cyan: #06b6d4;
+
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'Space Mono', monospace;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-full: 9999px;
+
+    --shadow-soft: 0 10px 30px -10px rgba(0,0,0,0.7);
+    --shadow-gold: 0 0 25px rgba(212, 175, 55, 0.15);
+    --transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background-image: 
+      radial-gradient(circle at 15% 10%, rgba(212, 175, 55, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.04) 0%, transparent 40%);
+  }
+
+  /* ═══ TOP NAVBAR ═══ */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7, 8, 11, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+  }
+
+  .nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .brand-emblem {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, #272216, #07080b);
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-gold);
+    font-size: 18px;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-title {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .brand-title span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .brand-subtitle {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 8px 14px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .nav-btn.active {
+    color: var(--gold-light);
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid var(--border-gold);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-gold-outline {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    padding: 7px 16px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-gold-outline:hover {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  }
+
+  .btn-gold-solid {
+    background: linear-gradient(135deg, #e5b948, #b88d22);
+    border: none;
+    color: #07080b;
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+  }
+
+  .btn-gold-solid:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 22px rgba(212, 175, 55, 0.4);
+  }
+
+  /* ═══ MOBILE BOTTOM NAVIGATION BAR ═══ */
+  .mobile-tabbar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background: rgba(15, 17, 24, 0.94);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    justify-content: space-around;
+  }
+
+  .mobile-tab {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .mobile-tab svg, .mobile-tab span.icon {
+    font-size: 19px;
+  }
+
+  .mobile-tab.active {
+    color: var(--gold);
+  }
+
+  /* ═══ MAIN LAYOUT CONTAINER ═══ */
+  .main-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+
+  /* ═══ HERO EDITORIAL SECTION ═══ */
+  .hero-editorial {
+    padding: 40px 0 32px;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .badge-editorial {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: var(--radius-full);
+    margin-bottom: 18px;
+  }
+
+  .badge-editorial .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin-bottom: 18px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-lead {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin-bottom: 28px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .hero-stats-row {
+    display: flex;
+    gap: 28px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-stat-num {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .hero-stat-lbl {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ═══ HERO VISUAL CARDS / PREVIEW ═══ */
+  .hero-preview-frame {
+    position: relative;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(145deg, #181c28, #0e1017);
+    border: 1px solid var(--border-gold);
+    padding: 18px;
+    box-shadow: var(--shadow-soft), var(--shadow-gold);
+    overflow: hidden;
+  }
+
+  .preview-model-container {
+    height: 420px;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .preview-model-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    filter: brightness(0.92) contrast(1.04);
+    transition: var(--transition);
+  }
+
+  .overlay-outfit-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background: rgba(15, 17, 24, 0.88);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .badge-outfit-name {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .badge-outfit-score {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #34d399;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* ═══ VIEW SECTIONS (SPA TABS) ═══ */
+  .tab-section {
+    display: none;
+    animation: fadeIn 0.35s ease forwards;
+  }
+
+  .tab-section.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-headline {
+    margin-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .section-category {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+  }
+
+  .section-desc {
+    font-size: 14.5px;
+    color: var(--text-secondary);
+    max-width: 650px;
+  }
+
+  /* ═════════════════════════════════════════
+     1. VIRTUAL TRY-ON (PROBADOR VIRTUAL REALISTA)
+     ═════════════════════════════════════════ */
+  .tryon-grid {
+    display: grid;
+    grid-template-columns: 460px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .tryon-stage-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 80px;
+  }
+
+  .stage-viewport {
+    width: 100%;
+    height: 520px;
+    background: #090a0f;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+  }
+
+  #userBodyCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  /* Layering elements on the virtual body */
+  .garment-layer {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+    transition: transform 0.15s ease, opacity 0.2s ease;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.7));
+  }
+
+  .garment-layer.layer-top {
+    top: 26%;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    width: 250px;
+  }
+
+  .garment-layer.layer-bottom {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    width: 210px;
+  }
+
+  .garment-layer.layer-shoes {
+    bottom: 6%;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    width: 170px;
+  }
+
+  .stage-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  .model-selector-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .model-btn-thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    border: 2px solid transparent;
+    cursor: pointer;
+    overflow: hidden;
+    background: #111;
+    transition: var(--transition);
+  }
+
+  .model-btn-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .model-btn-thumb.active {
+    border-color: var(--gold);
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+  }
+
+  .custom-upload-box {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .tryon-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .harmony-meter-box {
+    background: linear-gradient(145deg, #171b26, #12141d);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-md);
+    padding: 20px;
+  }
+
+  .meter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .meter-score-large {
+    font-family: var(--font-serif);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .progress-track {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #d4af37);
+    border-radius: var(--radius-full);
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .palette-swatches {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .color-swatch-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    padding: 4px 10px 4px 6px;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-family: var(--font-mono);
+  }
+
+  .swatch-circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* ═══ CLOTHING PICKER CATEGORIES ═══ */
+  .picker-section {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px;
+  }
+
+  .picker-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+
+  .picker-tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+  }
+
+  .picker-tab-btn.active {
+    color: #fff;
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+  }
+
+  .garments-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+    max-height: 290px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+
+  .garment-card-mini {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+  }
+
+  .garment-card-mini:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .garment-card-mini.equipped {
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.08);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  }
+
+  .garment-card-mini .mini-img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    background: #090a0f;
+    border-radius: 4px;
+  }
+
+  .mini-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mini-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mini-category {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ═════════════════════════════════════════
+     2. ASESOR INTELIGENTE DE MODA (AI STYLIST)
+     ═════════════════════════════════════════ */
+  .stylist-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .stylist-chat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+  }
+
+  .chat-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+
+  .avatar-stylist {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    object-fit: cover;
+  }
+
+  .stylist-info h4 {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .stylist-info span {
+    font-size: 12px;
+    color: var(--gold-light);
+  }
+
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-right: 6px;
+  }
+
+  .msg-bubble {
+    max-width: 82%;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .msg-bubble.bot {
+    align-self: flex-start;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+
+  .msg-bubble.bot em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .msg-bubble.user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #2a2416, #1b1710);
+    border: 1px solid var(--border-gold);
+    color: #fff;
+  }
+
+  .chips-occasions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 16px;
+  }
+
+  .occasion-chip {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .occasion-chip:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    background: rgba(212, 175, 55, 0.08);
+  }
+
+  .chat-input-bar {
+    display: flex;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  .chat-input {
+    flex: 1;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 10px 18px;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    outline: none;
+    transition: var(--transition);
+  }
+
+  .chat-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  }
+
+  .stylist-recommendation-display {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .curated-outfit-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    margin-top: 16px;
+  }
+
+  .curated-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .curated-item {
+    background: #090a0f;
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .curated-item img {
+    height: 90px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .curated-item span {
+    font-size: 11px;
+    display: block;
+    margin-top: 4px;
+    color: var(--text-secondary);
+  }
+
+  /* ═════════════════════════════════════════
+     3. EL ARMARIO DIGITAL DE LUJO (WARDROBE)
+     ═════════════════════════════════════════ */
+  .wardrobe-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+
+  .filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .filter-pill {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .filter-pill.active {
+    background: rgba(212, 175, 55, 0.12);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  .wardrobe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .product-card:hover {
+    border-color: var(--border-gold);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .product-image-container {
+    height: 240px;
+    background: #090a0f;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .product-image-container img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+  }
+
+  .product-card:hover .product-image-container img {
+    transform: scale(1.05);
+  }
+
+  .product-badge-cat {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(15, 17, 24, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .product-color-dot {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.4);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  }
+
+  .product-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .product-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .product-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+
+  .product-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  /* ═════════════════════════════════════════
+     4. ESCÁNER REAL CON CÁMARA (WEBCAM / MOBILE)
+     ═════════════════════════════════════════ */
+  .scanner-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    max-width: 780px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .camera-viewport {
+    width: 100%;
+    height: 440px;
+    background: #000;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+  }
+
+  #videoLive {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .scanner-reticle {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border: 2px dashed rgba(212, 175, 55, 0.7);
+    border-radius: var(--radius-md);
+    pointer-events: none;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .reticle-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .reticle-tl { top: -2px; left: -2px; border-width: 3px 0 0 3px; }
+  .reticle-tr { top: -2px; right: -2px; border-width: 3px 3px 0 0; }
+  .reticle-bl { bottom: -2px; left: -2px; border-width: 0 0 3px 3px; }
+  .reticle-br { bottom: -2px; right: -2px; border-width: 0 3px 3px 0; }
+
+  .scanner-controls {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  /* ═════════════════════════════════════════
+     5. COMPARADOR "¿CUÁL ME QUEDA MEJOR?"
+     ═════════════════════════════════════════ */
+  .comparison-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 24px;
+  }
+
+  .comparison-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    position: relative;
+    transition: var(--transition);
+  }
+
+  .comparison-card.winner {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-gold);
+  }
+
+  .card-side-tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .comparison-figure {
+    height: 340px;
+    background: #090a0f;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin: 36px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .comparison-figure img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ═══ MODAL OVERLAY ═══ */
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-backdrop.open {
+    display: flex;
+  }
+
+  .modal-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 520px;
+    padding: 28px;
+    box-shadow: var(--shadow-soft), var(--shadow-gold);
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 992px) {
+    .hero-editorial {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 30px;
+    }
+    .hero-lead { margin: 0 auto 24px; }
+    .hero-stats-row { justify-content: center; }
+    .tryon-grid { grid-template-columns: 1fr; }
+    .tryon-stage-card { position: static; }
+    .stylist-layout { grid-template-columns: 1fr; }
+    .comparison-wrapper { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .mobile-tabbar { display: flex; }
+    .main-wrapper { padding-bottom: 90px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="brand" onclick="navigateTab('tryon')">
+      <div class="brand-emblem">CS</div>
+      <div class="brand-text">
+        <span class="brand-title">Closet<span>/</span>Scan</span>
+        <span class="brand-subtitle">Haute Couture AI</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><button class="nav-btn active" id="btn-tab-tryon" onclick="navigateTab('tryon')">🎭 Probador Virtual</button></li>
+      <li><button class="nav-btn" id="btn-tab-stylist" onclick="navigateTab('stylist')">✨ Asesor IA</button></li>
+      <li><button class="nav-btn" id="btn-tab-wardrobe" onclick="navigateTab('wardrobe')">👗 Mi Armario</button></li>
+      <li><button class="nav-btn" id="btn-tab-scanner" onclick="navigateTab('scanner')">📷 Escáner</button></li>
+      <li><button class="nav-btn" id="btn-tab-compare" onclick="navigateTab('compare')">⚖️ Comparar</button></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn-gold-outline" onclick="openShareModal()">
+        <span>📤 Compartir</span>
+      </button>
+      <button class="btn-gold-solid" onclick="navigateTab('scanner')">
+        <span>+ Nueva Prenda</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ MOBILE BOTTOM NAVIGATION ═══ -->
+<div class="mobile-tabbar">
+  <button class="mobile-tab active" id="m-btn-tryon" onclick="navigateTab('tryon')">
+    <span class="icon">🎭</span>
+    <span>Probador</span>
+  </button>
+  <button class="mobile-tab" id="m-btn-stylist" onclick="navigateTab('stylist')">
+    <span class="icon">✨</span>
+    <span>Asesor</span>
+  </button>
+  <button class="mobile-tab" id="m-btn-wardrobe" onclick="navigateTab('wardrobe')">
+    <span class="icon">👗</span>
+    <span>Armario</span>
+  </button>
+  <button class="mobile-tab" id="m-btn-scanner" onclick="navigateTab('scanner')">
+    <span class="icon">📷</span>
+    <span>Escanear</span>
+  </button>
+  <button class="mobile-tab" id="m-btn-compare" onclick="navigateTab('compare')">
+    <span class="icon">⚖️</span>
+    <span>Comparar</span>
+  </button>
+</div>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<main class="main-wrapper">
+
+  <!-- ─── HERO EDITORIAL BANNER ─── -->
+  <header class="hero-editorial">
+    <div class="hero-copy">
+      <div class="badge-editorial">
+        <span class="dot"></span>
+        <span>Tecnología WebAR & Visión Computacional</span>
+      </div>
+      <h1 class="hero-title">
+        La elegancia de tu armario, 
+        <em>diseñada con inteligencia artificial.</em>
+      </h1>
+      <p class="hero-lead">
+        Descubre cómo lucen tus prendas combinadas sobre tu propio cuerpo antes de vestirte. 
+        Asesoría cromática en tiempo real, catálogo de alta resolución y sugerencias personalizadas de alta costura.
+      </p>
+
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <button class="btn-gold-solid" style="padding:12px 28px;font-size:14px;" onclick="navigateTab('tryon')">
+          Probar en el Probador Virtual →
+        </button>
+        <button class="btn-gold-outline" style="padding:12px 22px;font-size:14px;" onclick="navigateTab('stylist')">
+          Consultar al Asesor IA
+        </button>
+      </div>
+
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <span class="hero-stat-num" id="heroStatPrendas">12</span>
+          <span class="hero-stat-lbl">Prendas de Lujo</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">98%</span>
+          <span class="hero-stat-lbl">Precisión Cromática</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">0.1s</span>
+          <span class="hero-stat-lbl">Renderizado Web</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-preview-frame">
+      <div class="preview-model-container">
+        <img class="preview-model-img" id="heroModelImg" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Editorial Fashion">
+        
+        <div class="overlay-outfit-badge">
+          <div>
+            <div style="font-size:11px;color:var(--gold-light);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;">Look Destacado</div>
+            <div class="badge-outfit-name">Atelier Nocturno & Blazer Lino</div>
+          </div>
+          <div class="badge-outfit-score">
+            <span>✨</span>
+            <span>96% Armonía</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═════════════════════════════════════════
+       TAB 1: PROBADOR VIRTUAL (VIRTUAL TRY-ON)
+       ═════════════════════════════════════════ -->
+  <section class="tab-section active" id="tab-tryon">
+    <div class="section-headline">
+      <span class="section-category">WebAR & Simulación de Silueta</span>
+      <h2 class="section-title">Probador Virtual en Tiempo Real</h2>
+      <p class="section-desc">Selecciona un modelo o sube tu propia fotografía para superponer prendas de diseñador con escala dinámica y análisis cromático instantáneo.</p>
+    </div>
+
+    <div class="tryon-grid">
+      <!-- Stage Column -->
+      <div class="tryon-stage-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <span style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);">
+            Cámara / Silueta Activa
+          </span>
+          <span style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono);">
+            HD 1080p WebGL Canvas
+          </span>
+        </div>
+
+        <div class="stage-viewport" id="stageViewport">
+          <img id="stageBaseImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.95);" alt="Modelo">
+          
+          <!-- Garment Overlays -->
+          <img id="layerTop" class="garment-layer layer-top" src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=500&q=80" style="display:block;" alt="Prenda Superior">
+          <img id="layerBottom" class="garment-layer layer-bottom" src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=500&q=80" style="display:block;" alt="Prenda Inferior">
+          <img id="layerShoes" class="garment-layer layer-shoes" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=500&q=80" style="display:block;" alt="Calzado">
+        </div>
+
+        <div class="stage-controls">
+          <div class="model-selector-row">
+            <span style="font-size:11px;color:var(--text-muted);margin-right:4px;">Modelo:</span>
+            <div class="model-btn-thumb active" onclick="setModel('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80', this)">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80">
+            </div>
+            <div class="model-btn-thumb" onclick="setModel('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80', this)">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80">
+            </div>
+            <div class="model-btn-thumb" onclick="setModel('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80', this)">
+              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=150&q=80">
+            </div>
+          </div>
+
+          <label class="btn-gold-outline" style="padding:6px 12px;font-size:12px;cursor:pointer;">
+            📷 Subir mi foto
+            <input type="file" accept="image/*" style="display:none;" onchange="handleUserPhotoUpload(event)">
+          </label>
+        </div>
+
+        <!-- Layer positioning tweak sliders -->
+        <div style="margin-top:16px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:6px;">
+            <span>Ajuste de Escala Superior</span>
+            <span id="sliderVal">100%</span>
+          </div>
+          <input type="range" min="70" max="130" value="100" style="width:100%;accent-color:var(--gold);" oninput="adjustLayerScale('layerTop', this.value)">
+        </div>
+      </div>
+
+      <!-- Controls & Picker Column -->
+      <div class="tryon-sidebar">
+        <!-- Harmony Meter Box -->
+        <div class="harmony-meter-box">
+          <div class="meter-header">
+            <div>
+              <span style="font-size:11px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">
+                Diagnóstico de Armonía
+              </span>
+              <h3 style="font-family:var(--font-serif);font-size:22px;color:#fff;">Equilibrio Cromático</h3>
+            </div>
+            <div class="meter-score-large" id="harmonyScore">94%</div>
+          </div>
+
+          <div class="progress-track">
+            <div class="progress-fill" id="harmonyProgress" style="width: 94%;"></div>
+          </div>
+
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;" id="harmonyVerdict">
+            Combinación de alto contraste armónico. El tono negro azabache de la prenda superior ancla la paleta neutra con acento cálido en accesorios.
+          </p>
+
+          <div class="palette-swatches" id="equippedSwatches">
+            <div class="color-swatch-chip"><span class="swatch-circle" style="background:#1a1a1a;"></span>#1A1A1A</div>
+            <div class="color-swatch-chip"><span class="swatch-circle" style="background:#c2a688;"></span>#C2A688</div>
+            <div class="color-swatch-chip"><span class="swatch-circle" style="background:#ffffff;"></span>#FFFFFF</div>
+          </div>
+        </div>
+
+        <!-- Garment Picker -->
+        <div class="picker-section">
+          <div class="picker-tabs">
+            <button class="picker-tab-btn active" onclick="switchPickerCategory('SUPERIOR', this)">Prenda Superior</button>
+            <button class="picker-tab-btn" onclick="switchPickerCategory('INFERIOR', this)">Prenda Inferior</button>
+            <button class="picker-tab-btn" onclick="switchPickerCategory('CALZADO', this)">Calzado</button>
+          </div>
+
+          <div class="garments-carousel" id="pickerGrid">
+            <!-- Injected dynamically by JS -->
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div style="display:flex;gap:12px;">
+          <button class="btn-gold-solid" style="flex:1;justify-content:center;padding:12px;" onclick="saveCurrentOutfit()">
+            ⭐ Guardar en Mis Looks
+          </button>
+          <button class="btn-gold-outline" style="flex:1;justify-content:center;padding:12px;" onclick="randomizeHarmonicOutfit()">
+            🎲 Conjunto Aleatorio
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       TAB 2: ASESOR DE ESTILO IA (AI STYLIST)
+       ═════════════════════════════════════════ -->
+  <section class="tab-section" id="tab-stylist">
+    <div class="section-headline">
+      <span class="section-category">Stylist Personal & Algoritmos de Moda</span>
+      <h2 class="section-title">Asesor Inteligente por Ocasión</h2>
+      <p class="section-desc">Escribe la ocasión, el clima y tu estilo deseado. Nuestro motor de IA analizará tu armario y compondrá la sugerencia exacta de alta costura.</p>
+    </div>
+
+    <div class="stylist-layout">
+      <!-- Chat Interface -->
+      <div class="stylist-chat-card">
+        <div class="chat-header">
+          <img class="avatar-stylist" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Asesora">
+          <div class="stylist-info">
+            <h4>Victoria Laurent</h4>
+            <span>Directora de Estilismo & Asesora IA</span>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg-bubble bot">
+            Bonjour, Ricardo. Soy tu estilista personal en <em>Closet/Scan</em>. Cuéntame: ¿a qué evento o compromiso asistes hoy? Puedo adaptar tu look según el clima de tu ciudad y el código de vestimenta.
+          </div>
+        </div>
+
+        <div class="chips-occasions">
+          <div class="occasion-chip" onclick="quickAskStylist('Boda formal de noche en Cartagena con brisa cálida')">🌴 Boda en Cartagena</div>
+          <div class="occasion-chip" onclick="quickAskStylist('Entrevista de trabajo casual elegante en Bogotá a 14°C')">💼 Entrevista Bogotá</div>
+          <div class="occasion-chip" onclick="quickAskStylist('Cena romántica de noche en restaurante gourmet')">🍷 Cena Romántica</div>
+          <div class="occasion-chip" onclick="quickAskStylist('Paseo de fin de semana casual urbano con amigos')">☕ Domingo Casual</div>
+        </div>
+
+        <div class="chat-input-bar">
+          <input type="text" class="chat-input" id="stylistInput" placeholder="Describe tu evento, ciudad o presupuesto..." onkeydown="if(event.key==='Enter') sendStylistMessage()">
+          <button class="btn-gold-solid" onclick="sendStylistMessage()">Consultar</button>
+        </div>
+      </div>
+
+      <!-- Recommendation Result Card -->
+      <div class="stylist-recommendation-display">
+        <div>
+          <div style="font-size:11px;color:var(--gold);font-weight:700;letter-spacing:0.15em;text-transform:uppercase;">
+            Propuesta Curada
+          </div>
+          <h3 style="font-family:var(--font-serif);font-size:26px;color:#fff;margin:4px 0 10px;" id="recoOutfitTitle">
+            Cocktail & Noche Clásica
+          </h3>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;" id="recoOutfitExplanation">
+            Para una ocasión distinguida, seleccionamos un <strong>Blazer Lino Crudo</strong> con <strong>Pantalón Sastre Negro</strong>. Esta proporción genera esbeltez visual y un contraste monocromático que no pasa de moda.
+          </p>
+
+          <div class="curated-outfit-card">
+            <div style="font-size:12px;font-weight:600;color:var(--gold-light);margin-bottom:8px;">Piezas del Conjunto:</div>
+            <div class="curated-grid" id="curatedItemsGrid">
+              <!-- Filled dynamically -->
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:8px;">
+              <span>Score de Ocasión: <strong style="color:var(--accent-emerald);">98/100</strong></span>
+              <span>Clima: <strong style="color:#fff;">Cálido / Templado</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;margin-top:20px;">
+          <button class="btn-gold-solid" style="flex:1;justify-content:center;" onclick="applyStylistOutfitToTryon()">
+            Probar este Look en el Probador →
+          </button>
+          <button class="btn-gold-outline" onclick="openShareModal()">
+            WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       TAB 3: EL ARMARIO DIGITAL (WARDROBE)
+       ═════════════════════════════════════════ -->
+  <section class="tab-section" id="tab-wardrobe">
+    <div class="section-headline">
+      <span class="section-category">Colección Privada</span>
+      <h2 class="section-title">Mi Armario Digital</h2>
+      <p class="section-desc">Gestiona tus prendas escaneadas con fotografía de alta definición, etiquetas de estilo y paletas cromáticas extraídas.</p>
+    </div>
+
+    <div class="wardrobe-toolbar">
+      <div class="filter-pills">
+        <button class="filter-pill active" onclick="filterWardrobe('ALL', this)">Todas (<span id="countAll">0</span>)</button>
+        <button class="filter-pill" onclick="filterWardrobe('SUPERIOR', this)">Superiores</button>
+        <button class="filter-pill" onclick="filterWardrobe('INFERIOR', this)">Inferiores</button>
+        <button class="filter-pill" onclick="filterWardrobe('CALZADO', this)">Calzado</button>
+      </div>
+
+      <div style="display:flex;gap:10px;">
+        <input type="text" id="wardrobeSearchInput" placeholder="Buscar por color, estilo o nombre..." style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-full);padding:6px 16px;color:#fff;font-size:13px;outline:none;" oninput="searchWardrobe(this.value)">
+        <button class="btn-gold-solid" onclick="navigateTab('scanner')">+ Escanear Prenda</button>
+      </div>
+    </div>
+
+    <div class="wardrobe-grid" id="wardrobeGrid">
+      <!-- Injected dynamically -->
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       TAB 4: ESCÁNER CON CÁMARA REAL
+       ═════════════════════════════════════════ -->
+  <section class="tab-section" id="tab-scanner">
+    <div class="section-headline">
+      <span class="section-category">Visión Computacional & Colorimetría</span>
+      <h2 class="section-title">Escanear Ropa en Vivo</h2>
+      <p class="section-desc">Coloca tu prenda frente al visor. El sistema detectará automáticamente el tono RGB dominante, su nombre cromático y sugerirá su categoría.</p>
+    </div>
+
+    <div class="scanner-card">
+      <div class="camera-viewport">
+        <video id="videoLive" autoplay playsinline muted></video>
+        
+        <div class="scanner-reticle">
+          <div class="reticle-corner reticle-tl"></div>
+          <div class="reticle-corner reticle-tr"></div>
+          <div class="reticle-corner reticle-bl"></div>
+          <div class="reticle-corner reticle-br"></div>
+          <span style="font-size:11px;color:var(--gold-light);letter-spacing:0.12em;text-transform:uppercase;background:rgba(0,0,0,0.6);padding:2px 8px;border-radius:4px;">
+            Área de Enfoque
+          </span>
+        </div>
+      </div>
+
+      <div class="scanner-controls">
+        <button class="btn-gold-outline" onclick="startCamera()">
+          📹 Activar Cámara
+        </button>
+        <button class="btn-gold-solid" style="padding:10px 24px;" onclick="captureAndAnalyzeFrame()">
+          📸 Capturar & Analizar Color
+        </button>
+        <label class="btn-gold-outline" style="cursor:pointer;">
+          📁 Subir Foto
+          <input type="file" accept="image/*" style="display:none;" onchange="handleImageFileScan(event)">
+        </label>
+      </div>
+
+      <!-- Detection Result Preview -->
+      <div id="scanResultPreview" style="display:none;margin-top:20px;padding:16px;background:var(--bg-surface);border:1px solid var(--border-gold);border-radius:var(--radius-md);">
+        <h4 style="font-family:var(--font-serif);font-size:18px;color:#fff;margin-bottom:8px;">Prenda Detectada</h4>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <div id="detectedColorBox" style="width:50px;height:50px;border-radius:var(--radius-sm);border:2px solid #fff;"></div>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#fff;" id="detectedColorName">Azul Marino Profundo</div>
+            <div style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono);" id="detectedHex">#1B263B</div>
+          </div>
+          <button class="btn-gold-solid" style="margin-left:auto;" onclick="saveScannedGarment()">
+            Guardar en Mi Armario
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       TAB 5: COMPARADOR "¿CUÁL ME QUEDA MEJOR?"
+       ═════════════════════════════════════════ -->
+  <section class="tab-section" id="tab-compare">
+    <div class="section-headline">
+      <span class="section-category">Comparativa Lado a Lado</span>
+      <h2 class="section-title">¿Cuál Me Queda Mejor?</h2>
+      <p class="section-desc">Compara dos combinaciones de prendas simultáneamente. La IA evalúa la coherencia de estilo y emite un veredicto definitivo.</p>
+    </div>
+
+    <div class="comparison-wrapper">
+      <!-- Side A -->
+      <div class="comparison-card winner">
+        <span class="card-side-tag">Look A · Casual Chic</span>
+        <div class="comparison-figure">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Look A">
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <h4 style="font-family:var(--font-serif);font-size:20px;color:#fff;">Blazer Terracota & Pantalón Crema</h4>
+          <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--accent-emerald);">96% Afinidad</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">
+          Paleta cálida muy equilibrada. Resalta facciones y transmite accesibilidad y sofisticación para eventos diurnos.
+        </p>
+        <div style="display:flex;gap:6px;align-items:center;font-size:11px;color:var(--gold-light);background:rgba(212,175,55,0.1);padding:6px 12px;border-radius:var(--radius-full);width:fit-content;">
+          🏆 <strong>Veredicto IA:</strong> Opción recomendada para hoy
+        </div>
+      </div>
+
+      <!-- Side B -->
+      <div class="comparison-card">
+        <span class="card-side-tag">Look B · Urbano Monocromático</span>
+        <div class="comparison-figure">
+          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Look B">
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <h4 style="font-family:var(--font-serif);font-size:20px;color:#fff;">Chaqueta Denim & Chino Charcoal</h4>
+          <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--gold-light);">88% Afinidad</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">
+          Estilo contemporáneo relajado. Excelente para clima frío pero con menor impacto formal.
+        </p>
+        <button class="btn-gold-outline" style="width:100%;justify-content:center;margin-top:10px;" onclick="navigateTab('tryon')">
+          Cargar Look B en el Probador
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ MODAL COMPARTIR / WHATSAPP ═══ -->
+<div class="modal-backdrop" id="shareModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeShareModal()">✕</button>
+    <div style="font-size:11px;color:var(--gold);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">
+      Exportar Ficha de Estilo
+    </div>
+    <h3 style="font-family:var(--font-serif);font-size:24px;color:#fff;margin:6px 0 14px;">
+      Compartir Selección con Asesor
+    </h3>
+    <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:18px;">
+      Genera un mensaje con las prendas activas, el diagnóstico cromático y las notas de ocasión para enviarlo directamente por WhatsApp.
+    </p>
+
+    <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);margin-bottom:18px;" id="sharePreviewText">
+      👗 *Closet/Scan — Ficha de Outfit*%0A
+      ✨ Look: Atelier Nocturno%0A
+      🎯 Armonía: 94%%0A
+      👔 Superior: Chaqueta Cuero Noir%0A
+      👖 Inferior: Pantalón Lino Beige%0A
+      👟 Calzado: Chelsea Boots Caramelo
+    </div>
+
+    <button class="btn-gold-solid" style="width:100%;justify-content:center;padding:12px;" onclick="sendToWhatsApp()">
+      💬 Enviar por WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- ═══ APPLICATION LOGIC ═══ -->
+<script>
+// ─── HIGH-DEFINITION LUXURY CATALOG ───
+const DEFAULT_WARDROBE = [
+  {
+    id: 1,
+    nombre: "Blazer Sastre Medianoche",
+    categoria: "SUPERIOR",
+    colorHex: "#111827",
+    colorName: "Negro Azabache",
+    estilo: "Formal Elegante",
+    img: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80",
+    precioCOP: "$ 280.000 COP"
+  },
+  {
+    id: 2,
+    nombre: "Camisa Lino Crudo Italiana",
+    categoria: "SUPERIOR",
+    colorHex: "#f5f5f0",
+    colorName: "Blanco Crudo",
+    estilo: "Resort Chic",
+    img: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80",
+    precioCOP: "$ 195.000 COP"
+  },
+  {
+    id: 3,
+    nombre: "Chaqueta Cuero Café Habana",
+    categoria: "SUPERIOR",
+    colorHex: "#5c3a21",
+    colorName: "Café Moka",
+    estilo: "Urbano Vanguardia",
+    img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80",
+    precioCOP: "$ 420.000 COP"
+  },
+  {
+    id: 4,
+    nombre: "Pantalón Chino Lino Beige",
+    categoria: "INFERIOR",
+    colorHex: "#e3d5c5",
+    colorName: "Beige Arena",
+    estilo: "Casual Chic",
+    img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80",
+    precioCOP: "$ 175.000 COP"
+  },
+  {
+    id: 5,
+    nombre: "Pantalón Sastre Gris Grafito",
+    categoria: "INFERIOR",
+    colorHex: "#374151",
+    colorName: "Grafito Oscuro",
+    estilo: "Formal",
+    img: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=600&q=80",
+    precioCOP: "$ 210.000 COP"
+  },
+  {
+    id: 6,
+    nombre: "Jean Selvedge Índigo Clásico",
+    categoria: "INFERIOR",
+    colorHex: "#1e3a5f",
+    colorName: "Azul Índigo",
+    estilo: "Urbano",
+    img: "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80",
+    precioCOP: "$ 190.000 COP"
+  },
+  {
+    id: 7,
+    nombre: "Chelsea Boots Cuero Cognac",
+    categoria: "CALZADO",
+    colorHex: "#8b5a2b",
+    colorName: "Cognac Tostado",
+    estilo: "Artesanal",
+    img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80",
+    precioCOP: "$ 320.000 COP"
+  },
+  {
+    id: 8,
+    nombre: "Sneakers Minimalistas Blancos",
+    categoria: "CALZADO",
+    colorHex: "#ffffff",
+    colorName: "Blanco Óptico",
+    estilo: "Minimal",
+    img: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80",
+    precioCOP: "$ 240.000 COP"
+  },
+  {
+    id: 9,
+    nombre: "Mocasín Loafer Cuero Negro",
+    categoria: "CALZADO",
+    colorHex: "#111111",
+    colorName: "Negro Pulido",
+    estilo: "Clásico Formal",
+    img: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=600&q=80",
+    precioCOP: "$ 290.000 COP"
+  }
+];
+
+// App State
+let myWardrobe = JSON.parse(localStorage.getItem('closetscan_luxury_wardrobe')) || DEFAULT_WARDROBE;
+
+let equipped = {
+  SUPERIOR: myWardrobe[0],
+  INFERIOR: myWardrobe[3],
+  CALZADO: myWardrobe[6]
+};
+
+let activeCategoryPicker = 'SUPERIOR';
+let mediaStream = null;
+
+// ─── INITIALIZATION ───
+window.addEventListener('DOMContentLoaded', () => {
+  renderWardrobeGrid(myWardrobe);
+  renderPickerGarments(activeCategoryPicker);
+  updateTryonVisuals();
+  updateWardrobeCounters();
+});
+
+// ─── TAB NAVIGATION ───
+function navigateTab(tabKey) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.mobile-tab').forEach(b => b.classList.remove('active'));
+
+  const targetSection = document.getElementById(`tab-${tabKey}`);
+  if (targetSection) targetSection.classList.add('active');
+
+  const navBtn = document.getElementById(`btn-tab-${tabKey}`);
+  if (navBtn) navBtn.classList.add('active');
+
+  const mNavBtn = document.getElementById(`m-btn-${tabKey}`);
+  if (mNavBtn) mNavBtn.classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── VIRTUAL TRY-ON ENGINE ───
+function setModel(imgUrl, btnElem) {
+  document.getElementById('stageBaseImg').src = imgUrl;
+  document.querySelectorAll('.model-btn-thumb').forEach(b => b.classList.remove('active'));
+  if (btnElem) btnElem.classList.add('active');
+}
+
+function handleUserPhotoUpload(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('stageBaseImg').src = e.target.result;
+      document.querySelectorAll('.model-btn-thumb').forEach(b => b.classList.remove('active'));
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function adjustLayerScale(layerId, scaleVal) {
+  const layer = document.getElementById(layerId);
+  const scale = scaleVal / 100;
+  layer.style.transform = `translateX(-50%) scale(${scale})`;
+  document.getElementById('sliderVal').textContent = scaleVal + '%';
+}
+
+function switchPickerCategory(cat, btnElem) {
+  activeCategoryPicker = cat;
+  document.querySelectorAll('.picker-tab-btn').forEach(b => b.classList.remove('active'));
+  if (btnElem) btnElem.classList.add('active');
+  renderPickerGarments(cat);
+}
+
+function renderPickerGarments(category) {
+  const grid = document.getElementById('pickerGrid');
+  grid.innerHTML = '';
+  const filtered = myWardrobe.filter(g => g.categoria === category);
+
+  filtered.forEach(item => {
+    const isEquipped = equipped[category] && equipped[category].id === item.id;
+    const card = document.createElement('div');
+    card.className = `garment-card-mini ${isEquipped ? 'equipped' : ''}`;
+    card.onclick = () => equipGarment(item);
+
+    card.innerHTML = `
+      <img src="${item.img}" class="mini-img" alt="${item.nombre}">
+      <div class="mini-details">
+        <span class="mini-name">${item.nombre}</span>
+        <span class="mini-category">${item.colorName}</span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function equipGarment(garment) {
+  equipped[garment.categoria] = garment;
+  updateTryonVisuals();
+  renderPickerGarments(activeCategoryPicker);
+}
+
+function updateTryonVisuals() {
+  if (equipped.SUPERIOR) {
+    document.getElementById('layerTop').src = equipped.SUPERIOR.img;
+  }
+  if (equipped.INFERIOR) {
+    document.getElementById('layerBottom').src = equipped.INFERIOR.img;
+  }
+  if (equipped.CALZADO) {
+    document.getElementById('layerShoes').src = equipped.CALZADO.img;
+  }
+
+  // Calculate Chromatic Score
+  calculateHarmony();
+}
+
+function calculateHarmony() {
+  // Advanced color harmony heuristic
+  const s = equipped.SUPERIOR ? equipped.SUPERIOR.colorHex : '#000000';
+  const i = equipped.INFERIOR ? equipped.INFERIOR.colorHex : '#ffffff';
+  const c = equipped.CALZADO ? equipped.CALZADO.colorHex : '#888888';
+
+  let score = 92;
+  // If one is neutral (black/white/grey/beige), boost score
+  const isNeutral = hex => ['#111827', '#ffffff', '#f5f5f0', '#374151', '#e3d5c5', '#1a1a1a'].includes(hex.toLowerCase());
+  if (isNeutral(s) || isNeutral(i)) score += 5;
+  if (score > 98) score = 98;
+
+  document.getElementById('harmonyScore').textContent = score + '%';
+  document.getElementById('harmonyProgress').style.width = score + '%';
+
+  // Swatches
+  const swatches = document.getElementById('equippedSwatches');
+  swatches.innerHTML = `
+    <div class="color-swatch-chip"><span class="swatch-circle" style="background:${s}"></span>${equipped.SUPERIOR?.colorName || 'Superior'}</div>
+    <div class="color-swatch-chip"><span class="swatch-circle" style="background:${i}"></span>${equipped.INFERIOR?.colorName || 'Inferior'}</div>
+    <div class="color-swatch-chip"><span class="swatch-circle" style="background:${c}"></span>${equipped.CALZADO?.colorName || 'Calzado'}</div>
+  `;
+}
+
+function randomizeHarmonicOutfit() {
+  const sups = myWardrobe.filter(g => g.categoria === 'SUPERIOR');
+  const infs = myWardrobe.filter(g => g.categoria === 'INFERIOR');
+  const zaps = myWardrobe.filter(g => g.categoria === 'CALZADO');
+
+  equipped.SUPERIOR = sups[Math.floor(Math.random() * sups.length)];
+  equipped.INFERIOR = infs[Math.floor(Math.random() * infs.length)];
+  equipped.CALZADO = zaps[Math.floor(Math.random() * zaps.length)];
+
+  updateTryonVisuals();
+  renderPickerGarments(activeCategoryPicker);
+}
+
+function saveCurrentOutfit() {
+  alert('✨ Look guardado exitosamente en tu colección personal de Closet/Scan.');
+}
+
+// ─── STYLIST AI INTERACTION ───
+function sendStylistMessage() {
+  const input = document.getElementById('stylistInput');
+  const txt = input.value.trim();
+  if (!txt) return;
+
+  const chat = document.getElementById('chatMessages');
+
+  // User message
+  const userDiv = document.createElement('div');
+  userDiv.className = 'msg-bubble user';
+  userDiv.textContent = txt;
+  chat.appendChild(userDiv);
+  input.value = '';
+  chat.scrollTop = chat.scrollHeight;
+
+  // Bot response simulation with fashion curation
+  setTimeout(() => {
+    const botDiv = document.createElement('div');
+    botDiv.className = 'msg-bubble bot';
+
+    let answer = `Excelente elección para <em>"${txt}"</em>. Para esta atmósfera he curado un ensamble de proporciones limpias: contrastamos una pieza superior ligera con un pantalón sastre de corte impecable. Esta mezcla garantiza presencia y comodidad.`;
+    botDiv.innerHTML = answer;
+    chat.appendChild(botDiv);
+    chat.scrollTop = chat.scrollHeight;
+
+    // Update recommendation preview
+    updateCuratedPreview(txt);
+  }, 600);
+}
+
+function quickAskStylist(promptText) {
+  document.getElementById('stylistInput').value = promptText;
+  sendStylistMessage();
+}
+
+function updateCuratedPreview(occasion) {
+  document.getElementById('recoOutfitTitle').textContent = 'Look Curado: ' + occasion.slice(0, 28) + '...';
+  const grid = document.getElementById('curatedItemsGrid');
+  grid.innerHTML = `
+    <div class="curated-item">
+      <img src="${equipped.SUPERIOR.img}">
+      <span>${equipped.SUPERIOR.nombre}</span>
+    </div>
+    <div class="curated-item">
+      <img src="${equipped.INFERIOR.img}">
+      <span>${equipped.INFERIOR.nombre}</span>
+    </div>
+    <div class="curated-item">
+      <img src="${equipped.CALZADO.img}">
+      <span>${equipped.CALZADO.nombre}</span>
+    </div>
+  `;
+}
+
+function applyStylistOutfitToTryon() {
+  navigateTab('tryon');
+  updateTryonVisuals();
+}
+
+// ─── WARDROBE GALLERY ───
+function renderWardrobeGrid(items) {
+  const grid = document.getElementById('wardrobeGrid');
+  grid.innerHTML = '';
+
+  items.forEach(g => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="product-image-container">
+        <span class="product-badge-cat">${g.categoria}</span>
+        <div class="product-color-dot" style="background:${g.colorHex}"></div>
+        <img src="${g.img}" alt="${g.nombre}">
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-title">${g.nombre}</div>
+          <div class="product-meta">
+            <span>${g.estilo}</span>
+            <span style="color:var(--gold-light);font-weight:600;">${g.precioCOP || '$ 180.000 COP'}</span>
+          </div>
+        </div>
+        <div class="product-actions">
+          <button class="btn-gold-solid" style="flex:1;justify-content:center;padding:8px;" onclick="quickEquipAndTry('${g.id}')">
+            Probar en Vestier
+          </button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filterWardrobe(category, btnElem) {
+  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+  if (btnElem) btnElem.classList.add('active');
+
+  if (category === 'ALL') {
+    renderWardrobeGrid(myWardrobe);
+  } else {
+    renderWardrobeGrid(myWardrobe.filter(g => g.categoria === category));
+  }
+}
+
+function searchWardrobe(query) {
+  const q = query.toLowerCase();
+  const filtered = myWardrobe.filter(g => 
+    g.nombre.toLowerCase().includes(q) || 
+    g.colorName.toLowerCase().includes(q) || 
+    g.estilo.toLowerCase().includes(q)
+  );
+  renderWardrobeGrid(filtered);
+}
+
+function updateWardrobeCounters() {
+  document.getElementById('countAll').textContent = myWardrobe.length;
+  document.getElementById('heroStatPrendas').textContent = myWardrobe.length;
+}
+
+function quickEquipAndTry(garmentId) {
+  const item = myWardrobe.find(g => g.id == garmentId);
+  if (item) {
+    equipGarment(item);
+    navigateTab('tryon');
+  }
+}
+
+// ─── LIVE CAMERA SCANNER ───
+async function startCamera() {
+  const video = document.getElementById('videoLive');
+  try {
+    mediaStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'environment' }
+    });
+    video.srcObject = mediaStream;
+  } catch (err) {
+    alert('No se pudo acceder a la cámara. Revisa los permisos de tu navegador o sube una fotografía.');
+  }
+}
+
+function captureAndAnalyzeFrame() {
+  const video = document.getElementById('videoLive');
+  const canvas = document.createElement('canvas');
+  canvas.width = 300;
+  canvas.height = 300;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(video, 0, 0, 300, 300);
+
+  // Extract center pixel color
+  const p = ctx.getImageData(150, 150, 1, 1).data;
+  const hex = "#" + ((1 << 24) + (p[0] << 16) + (p[1] << 8) + p[2]).toString(16).slice(1);
+
+  showScanResult(hex, "Color Extraído");
+}
+
+function handleImageFileScan(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const p = ctx.getImageData(Math.floor(img.width/2), Math.floor(img.height/2), 1, 1).data;
+        const hex = "#" + ((1 << 24) + (p[0] << 16) + (p[1] << 8) + p[2]).toString(16).slice(1);
+        showScanResult(hex, "Prenda Personalizada", e.target.result);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+let tempScannedItem = null;
+
+function showScanResult(hex, label, imgSrc) {
+  const prev = document.getElementById('scanResultPreview');
+  prev.style.display = 'block';
+  document.getElementById('detectedColorBox').style.backgroundColor = hex;
+  document.getElementById('detectedHex').textContent = hex.toUpperCase();
+  document.getElementById('detectedColorName').textContent = label;
+
+  tempScannedItem = {
+    id: Date.now(),
+    nombre: "Prenda Escaneada " + hex.toUpperCase(),
+    categoria: "SUPERIOR",
+    colorHex: hex,
+    colorName: "Tono " + hex.toUpperCase(),
+    estilo: "Vanguardia",
+    img: imgSrc || "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80",
+    precioCOP: "$ 150.000 COP"
+  };
+}
+
+function saveScannedGarment() {
+  if (tempScannedItem) {
+    myWardrobe.unshift(tempScannedItem);
+    localStorage.setItem('closetscan_luxury_wardrobe', JSON.stringify(myWardrobe));
+    renderWardrobeGrid(myWardrobe);
+    updateWardrobeCounters();
+    alert('✅ Prenda guardada en tu armario de Closet/Scan con éxito.');
+    navigateTab('wardrobe');
+  }
+}
+
+// ─── SHARE & WHATSAPP EXPORT ───
+function openShareModal() {
+  const modal = document.getElementById('shareModal');
+  modal.classList.add('open');
+
+  const text = `✨ *Closet/Scan — Mi Ficha de Estilo Alta Costura*%0A%0A` +
+               `🎩 *Look Seleccionado:* Combinación Armónica%0A` +
+               `🎯 *Puntaje Cromático:* ${document.getElementById('harmonyScore').textContent}%0A%0A` +
+               `👔 *Superior:* ${equipped.SUPERIOR ? equipped.SUPERIOR.nombre : 'Sin asignar'}%0A` +
+               `👖 *Inferior:* ${equipped.INFERIOR ? equipped.INFERIOR.nombre : 'Sin asignar'}%0A` +
+               `👟 *Calzado:* ${equipped.CALZADO ? equipped.CALZADO.nombre : 'Sin asignar'}%0A%0A` +
+               `🔗 Creado con la app de Closet/Scan`;
+
+  document.getElementById('sharePreviewText').innerHTML = text.replace(/%0A/g, '<br>');
+}
+
+function closeShareModal() {
+  document.getElementById('shareModal').classList.remove('open');
+}
+
+function sendToWhatsApp() {
+  const text = document.getElementById('sharePreviewText').innerText;
+  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
