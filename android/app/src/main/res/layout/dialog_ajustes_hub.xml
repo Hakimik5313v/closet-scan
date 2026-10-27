@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#0F0F14"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Header Principal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.12"
+            android:text="AJUSTES GENERALES"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/btnCerrarHub"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="#1B1B24"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="16dp"
+        android:background="#222230" />
+
+    <!-- SECCIÓN 1: INTELIGENCIA ARTIFICIAL -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.08"
+        android:text="INTELIGENCIA ARTIFICIAL"
+        android:textColor="#888899"
+        android:textSize="11sp" />
+
+    <!-- Botón / Tarjeta: Configurar API Key -->
+    <LinearLayout
+        android:id="@+id/btnMenuApiKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#161620"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="14dp">
+
+        <TextView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="#242432"
+            android:gravity="center"
+            android:text="🔑"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-bold"
+                android:text="Clave de API (Google AI Studio)"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvEstadoApiKeySubtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Configurada y lista"
+                android:textColor="#80FF80"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="→"
+            android:textColor="#888899"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Botón / Tarjeta: Motor de Try-On (Local, Replicate, Gemini) -->
+    <LinearLayout
+        android:id="@+id/btnMenuMotor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#161620"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="14dp">
+
+        <TextView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="#242432"
+            android:gravity="center"
+            android:text="⚙️"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-bold"
+                android:text="Motor de Probador Virtual"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvEstadoMotorSubtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="🖥️ Local • Sin costo"
+                android:textColor="#80FF80"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="→"
+            android:textColor="#888899"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+    <!-- Botón / Tarjeta: Consola de Auditoría y Logs -->
+    <LinearLayout
+        android:id="@+id/btnMenuLogs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#161620"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="14dp">
+
+        <TextView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="#242432"
+            android:gravity="center"
+            android:text="📋"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-bold"
+                android:text="Auditoría y Logs de la IA"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Monitoreo de peticiones y respuestas en vivo"
+                android:textColor="#777788"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="→"
+            android:textColor="#888899"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- SECCIÓN 2: CUENTA Y DATOS -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.08"
+        android:text="CUENTA Y DATOS"
+        android:textColor="#888899"
+        android:textSize="11sp" />
+
+    <!-- Botón / Tarjeta: Perfil y Cuenta -->
+    <LinearLayout
+        android:id="@+id/btnMenuCuenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#161620"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="14dp">
+
+        <TextView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="#242432"
+            android:gravity="center"
+            android:text="👤"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-bold"
+                android:text="Perfil de Usuario"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Modo Offline Local • Almacenamiento seguro"
+                android:textColor="#777788"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="→"
+            android:textColor="#888899"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Botón / Tarjeta: Gestión de Armario y Muestras -->
+    <LinearLayout
+        android:id="@+id/btnMenuDatosArmario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#161620"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="14dp">
+
+        <TextView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="#242432"
+            android:gravity="center"
+            android:text="👕"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-bold"
+                android:text="Datos de Armario &amp; Muestras"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Restaurar prendas demo o gestionar BD"
+                android:textColor="#777788"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="→"
+            android:textColor="#888899"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Footer Información -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="#222230" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="CLOSET / SCAN v1.2 • Gemini 3.5 Flash-Lite"
+        android:textColor="#555566"
+        android:textSize="10sp" />
+
+</LinearLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#0F0F14"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.1"
+            android:text="FASHN.AI (TRY-ON GENERATIVO)"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/btnCerrarFashnDialog"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="#1B1B24"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="14dp"
+        android:background="#222230" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FASHN.ai genera fotos reales adaptando la prenda a tu cuerpo con IA de difusión:"
+        android:textColor="#CCCCCC"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/etFashnApiKeyInput"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:background="#181822"
+        android:hint="Pega tu API Key de FASHN (fa-...)"
+        android:inputType="textPassword"
+        android:paddingHorizontal="12dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#555566"
+        android:textSize="12sp" />
+
+    <!-- Tarjeta de instrucciones para los 10 créditos gratis -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#14141C"
+        android:padding="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎁 10 Intentos Gratis sin tarjeta:"
+            android:textColor="#FFDD66"
+            android:fontFamily="sans-serif-bold"
+            android:textSize="11.5sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="1. Entra a fashn.ai desde tu celular\n2. Toca 'Sign in with Google'\n3. Ve a 'API' → copia tu clave y pégala aquí"
+            android:textColor="#9999AA"
+            android:lineSpacingExtra="2dp"
+            android:textSize="10.5sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGuardarFashnKey"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="sans-serif-bold"
+            android:letterSpacing="0.06"
+            android:text="GUARDAR CLAVE FASHN"
+            android:textColor="#000000"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+</LinearLayout>

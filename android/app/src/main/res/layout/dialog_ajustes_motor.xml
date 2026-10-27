@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#0F0F1A">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⚙️ Motor de Try-On"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:fontFamily="sans-serif-bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:text="Elige cómo se genera el probador virtual. Puedes cambiarlo en cualquier momento."
+            android:textColor="#888899"
+            android:textSize="12sp" />
+
+        <!-- ── OPCIÓN 1: LOCAL ───────────────────────── -->
+        <LinearLayout
+            android:id="@+id/cardMotorLocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="#161622"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbMotorLocal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#8B7CF6" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="🖥️  Servidor Local"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#1A2A1A"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="3dp"
+                    android:text="GRATIS"
+                    android:textColor="#44DD88"
+                    android:textSize="10sp"
+                    android:fontFamily="sans-serif-bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="34dp"
+                android:text="Tu PC ejecuta el modelo IDM-VTON localmente.\n✅ $0 costo  ✅ Privado  ⚠️ PC debe estar encendida"
+                android:textColor="#777788"
+                android:textSize="11sp" />
+
+            <!-- Campo URL del servidor -->
+            <LinearLayout
+                android:id="@+id/layoutUrlServidor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="34dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="URL del servidor"
+                    android:textColor="#AAAACC"
+                    android:textSize="11sp" />
+
+                <EditText
+                    android:id="@+id/etUrlServidor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="#0A0A14"
+                    android:fontFamily="monospace"
+                    android:hint="http://192.168.1.X:8000"
+                    android:inputType="textUri"
+                    android:padding="10dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#444455"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ── OPCIÓN 2: REPLICATE ──────────────────── -->
+        <LinearLayout
+            android:id="@+id/cardMotorReplicate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="#161622"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbMotorReplicate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#8B7CF6" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="☁️  Replicate (IDM-VTON)"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#1A1A2A"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="3dp"
+                    android:text="$0.024/img"
+                    android:textColor="#AAAAFF"
+                    android:textSize="10sp"
+                    android:fontFamily="sans-serif-bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="34dp"
+                android:text="Mismo modelo IDM-VTON pero en la nube. Sin PC.\n✅ $5 gratis al registrarte  ✅ ~200 pruebas  ✅ Alta fidelidad"
+                android:textColor="#777788"
+                android:textSize="11sp" />
+
+            <!-- Campo API Key Replicate -->
+            <LinearLayout
+                android:id="@+id/layoutApiKeyReplicate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="34dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="API Key de Replicate"
+                        android:textColor="#AAAACC"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvLinkReplicate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Obtener gratis →"
+                        android:textColor="#8B7CF6"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/etApiKeyReplicate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="#0A0A14"
+                    android:fontFamily="monospace"
+                    android:hint="r8_xxxxxxxxxxxxxxxxxxxx"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#444455"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ── OPCIÓN 3: GEMINI IMAGEN ──────────────── -->
+        <LinearLayout
+            android:id="@+id/cardMotorGemini"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="#161622"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbMotorGemini"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#8B7CF6" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="✨  Gemini Imagen (Edición IA)"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#2A1A1A"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="3dp"
+                    android:text="$0.04/img"
+                    android:textColor="#FFAA66"
+                    android:textSize="10sp"
+                    android:fontFamily="sans-serif-bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="34dp"
+                android:text="Edición generativa: describe el cambio de estilo.\n✅ Cualquier pose  ✅ Cambios libres  ⚠️ No usa tu ropa exacta"
+                android:textColor="#777788"
+                android:textSize="11sp" />
+
+            <!-- Campo API Key Gemini -->
+            <LinearLayout
+                android:id="@+id/layoutApiKeyGemini"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="34dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="API Key de Google AI Studio"
+                        android:textColor="#AAAACC"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvLinkGemini"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Obtener gratis →"
+                        android:textColor="#FFAA66"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/etApiKeyGemini"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="#0A0A14"
+                    android:fontFamily="monospace"
+                    android:hint="AIzaXXXXXXXXXXXXXXXXXXXXXXXX"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#444455"
+                    android:textSize="12sp" />
+
+                <!-- Prompt de edición para Gemini -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Instrucción de edición (personalizable)"
+                    android:textColor="#AAAACC"
+                    android:textSize="11sp" />
+
+                <EditText
+                    android:id="@+id/etPromptGemini"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="#0A0A14"
+                    android:gravity="top"
+                    android:hint="Viste a esta persona con la ropa de la segunda imagen, manteniendo su cara, cuerpo y pose exactos."
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:padding="10dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#444455"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Botones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/btnMotorCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#222233"
+                android:text="Cancelar"
+                android:textColor="#888899" />
+
+            <Button
+                android:id="@+id/btnMotorGuardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#8B7CF6"
+                android:text="Guardar"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

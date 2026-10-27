@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#0F0F14"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.1"
+            android:text="CLAVE GOOGLE AI STUDIO"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btnCerrarApiKeyDialog"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="#1B1B24"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="14dp"
+        android:background="#222230" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pega tu clave de API de Google AI Studio para activar la IA generativa:"
+        android:textColor="#CCCCCC"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/etApiKeyInput"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:background="#181822"
+        android:hint="Pega tu clave (AIza...)"
+        android:inputType="textPassword"
+        android:paddingHorizontal="12dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#555566"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="💡 Obtén una clave gratis en aistudio.google.com. La clave queda guardada de forma privada en tu teléfono."
+        android:textColor="#777788"
+        android:textSize="10.5sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGuardarApiKeyModal"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="sans-serif-bold"
+            android:letterSpacing="0.06"
+            android:text="GUARDAR"
+            android:textColor="#000000"
+            android:textSize="11sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProbarApiKeyModal"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:backgroundTint="#242432"
+            android:fontFamily="sans-serif-bold"
+            android:letterSpacing="0.06"
+            android:text="PROBAR CLAVE"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvEstadoTestApiKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="#CCCCCC"
+        android:textSize="11.5sp"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Network Security Config — Closet/Scan
+    Permite tráfico HTTP cleartext al servidor local HakiForge Bridge (192.168.1.x)
+    sin afectar la seguridad del resto de conexiones externas.
+-->
+<network-security-config>
+    <!-- Permitir HTTP al bridge local en la red doméstica -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">192.168.1.66</domain>
+        <!-- También permitir cualquier IP local por si cambia -->
+        <domain includeSubdomains="false">192.168.0.66</domain>
+        <domain includeSubdomains="false">10.0.0.1</domain>
+        <domain includeSubdomains="false">localhost</domain>
+    </domain-config>
+
+    <!-- Todo el resto sigue con HTTPS obligatorio -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

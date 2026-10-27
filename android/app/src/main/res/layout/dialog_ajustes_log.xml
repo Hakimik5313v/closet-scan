@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#0F0F14"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.1"
+            android:text="AJUSTES &amp; CONSOLA IA"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btnCerrarTop"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="#1B1B24"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="14dp"
+        android:background="#222230" />
+
+    <!-- Sección 1: API Key de Google AI Studio -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.08"
+        android:text="CLAVE GOOGLE AI STUDIO (GEMINI)"
+        android:textColor="#AAAAAA"
+        android:textSize="11sp" />
+
+    <EditText
+        android:id="@+id/etDialogApiKey"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="6dp"
+        android:background="#181822"
+        android:hint="Pega aquí tu API Key (AIza...)"
+        android:inputType="textPassword"
+        android:paddingHorizontal="12dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#555566"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Gratis en aistudio.google.com — Tu clave se almacena solo en este teléfono."
+        android:textColor="#777788"
+        android:textSize="10sp" />
+
+    <!-- Botones de acción para la API Key -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGuardarApiKey"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="sans-serif-bold"
+            android:letterSpacing="0.06"
+            android:text="GUARDAR KEY"
+            android:textColor="#000000"
+            android:textSize="11sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProbarApiKey"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:backgroundTint="#242432"
+            android:fontFamily="sans-serif-bold"
+            android:letterSpacing="0.06"
+            android:text="TEST CONEXIÓN"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvEstadoTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="#CCCCCC"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+    <!-- Sección 2: Consola de Diagnóstico & Logs -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="12dp"
+        android:background="#222230" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.08"
+            android:text="TERMINAL DE EVENTOS &amp; ERRORES IA"
+            android:textColor="#AAAAAA"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/btnCopiarLogs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:background="#1B1B24"
+            android:text="📋 COPIAR"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/btnLimpiarLogs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:background="#1B1B24"
+            android:text="🗑️ LIMPIAR"
+            android:textColor="#FF6B6B"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <!-- Caja de terminal -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginTop="8dp"
+        android:background="#07070A"
+        android:padding="8dp">
+
+        <ScrollView
+            android:id="@+id/scrollLogs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <TextView
+                android:id="@+id/tvTerminalLogs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textColor="#80FF80"
+                android:textSize="10sp"
+                android:lineSpacingExtra="2dp"
+                android:text="[Iniciando consola de depuración...]" />
+        </ScrollView>
+    </FrameLayout>
+
+</LinearLayout>

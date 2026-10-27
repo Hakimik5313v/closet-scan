@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_prenda.xml — Tarjeta minimalista sin iconos genéricos ni bolitas confusas -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardPrenda"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="#121215"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#FFFFFF"
+    app:strokeWidth="1.5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Marco para la prenda: muestra foto real si existe, o tipografía limpia -->
+        <FrameLayout
+            android:id="@+id/frameFotoPrenda"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="#1B1B20">
+
+            <ImageView
+                android:id="@+id/imgFotoRealPrenda"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvLetraPrenda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.1"
+                android:text="[ PRENDA ]"
+                android:textColor="#555560"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/btnFavoritoPrenda"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="♡"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:background="#66000000" />
+
+        </FrameLayout>
+
+        <!-- Nombre de la prenda -->
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Camisa Oxford"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Categoría y Estilo -->
+        <TextView
+            android:id="@+id/tvCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.05"
+            android:text="SUPERIOR • FORMAL"
+            android:textAllCaps="true"
+            android:textColor="#888890"
+            android:textSize="10sp" />
+
+        <!-- Color como texto descriptivo limpio (sin bolitas flotantes) -->
+        <TextView
+            android:id="@+id/tvColorDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="sans-serif"
+            android:text="Color: Blanco"
+            android:textColor="#AAAAAA"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

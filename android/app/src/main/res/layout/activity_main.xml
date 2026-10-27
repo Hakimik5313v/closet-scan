@@ -1,0 +1,2410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- activity_main.xml — Sistema Armario Completo con Búsqueda, Filtros, Ficha Confirmar Prenda (Figma) y Navegación -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0C"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- ═══ 1. TOP APP BAR CON ENGRANAJE A LA DERECHA ═══ -->
+    <LinearLayout
+        android:id="@+id/topBarGlobal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="12dp"
+        android:paddingHorizontal="16dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CLOSET / SCAN"
+                android:letterSpacing="0.12"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvHeaderSubtitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vestier &amp; Armario Inteligente"
+                android:textColor="#777782"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Botón Engranaje Configuración ⚙️ a la derecha -->
+        <TextView
+            android:id="@+id/btnConfiguracion"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="#1B1B22"
+            android:gravity="center"
+            android:text="⚙"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/dividerTop"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="#FFFFFF" />
+
+    <!-- ═══ 2. CONTENEDOR CENTRAL DE PANTALLAS ═══ -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- ── VISTA 1: INICIO / DASHBOARD (FIGMA TU ESTILO + ESCANEOS RECIENTES) ── -->
+        <ScrollView
+            android:id="@+id/viewInicio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0A0A0C"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- 1. Encabezado TU ESTILO -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TU ESTILO"
+                    android:fontFamily="serif"
+                    android:letterSpacing="0.12"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="ANÁLISIS DE TU ARMARIO"
+                    android:letterSpacing="0.15"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="#888899"
+                    android:textSize="11sp" />
+
+                <!-- 2. Gráfico de Dona Nativo Canvas (HakiForge) -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <com.hakimik.closetscan.GraficoDonaView
+                        android:id="@+id/graficoDonaInicio"
+                        android:layout_width="210dp"
+                        android:layout_height="210dp"
+                        android:layout_gravity="center" />
+
+                    <!-- Contador central dentro de la dona -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvTotalPrendasStat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+                            android:textColor="#FFFFFF"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PRENDAS"
+                            android:letterSpacing="0.1"
+                            android:textColor="#888899"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <!-- Leyenda de colores del Gráfico de Dona -->
+                <LinearLayout
+                    android:id="@+id/llLeyendaDona"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvLeyendaItem1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:text="● Casual 50%"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvLeyendaItem2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:text="● Formal 25%"
+                        android:textColor="#CCCCCC"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvLeyendaItem3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="● Elegante 25%"
+                        android:textColor="#888888"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#222228" />
+
+                <!-- 3. Sección ESCANEOS RECIENTES (Figma) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ESCANEOS RECIENTES"
+                        android:fontFamily="serif"
+                        android:letterSpacing="0.1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnVerTodoArmario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ver todo →"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- Carrusel horizontal de prendas recientes -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/llContenedorRecientes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+
+                </HorizontalScrollView>
+
+                <!-- Divisor -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#222228" />
+
+                <!-- 4. Sección OUTFITS GUARDADOS -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="OUTFITS GUARDADOS"
+                        android:fontFamily="serif"
+                        android:letterSpacing="0.1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnVerOutfitsVestier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ver en Vestier →"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvOutfitsVacioInicio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Aún no tienes outfits guardados. Combina prendas en el Vestier y guárdalos 👗"
+                    android:textColor="#555566"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <!-- Carrusel horizontal de outfits guardados -->
+                <HorizontalScrollView
+                    android:id="@+id/hsvOutfitsGuardados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:scrollbars="none"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/llContenedorOutfitsInicio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ── VISTA 2: ARMARIO (GALERÍA + BÚSQUEDA + BOTÓN AGREGAR) ── -->
+        <RelativeLayout
+            android:id="@+id/viewArmario"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- Barra de búsqueda en tiempo real -->
+                <EditText
+                    android:id="@+id/etBuscarPrenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#16161D"
+                    android:paddingHorizontal="14dp"
+                    android:hint="🔍 Buscar en tu armario..."
+                    android:textColorHint="#666675"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:maxLines="1"
+                    android:inputType="text" />
+
+                <!-- Filtros de categoría -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="12dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/btnFiltroTodos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="6dp"
+                            android:paddingHorizontal="14dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="#FFFFFF"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:text="TODOS" />
+
+                        <TextView
+                            android:id="@+id/btnFiltroSuperior"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="6dp"
+                            android:paddingHorizontal="14dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="#1B1B22"
+                            android:textColor="#CCCCCC"
+                            android:textSize="12sp"
+                            android:text="SUPERIOR" />
+
+                        <TextView
+                            android:id="@+id/btnFiltroInferior"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="6dp"
+                            android:paddingHorizontal="14dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="#1B1B22"
+                            android:textColor="#CCCCCC"
+                            android:textSize="12sp"
+                            android:text="INFERIOR" />
+
+                        <TextView
+                            android:id="@+id/btnFiltroCalzado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="6dp"
+                            android:paddingHorizontal="14dp"
+                            android:background="#1B1B22"
+                            android:textColor="#CCCCCC"
+                            android:textSize="12sp"
+                            android:text="CALZADO" />
+
+                        <TextView
+                            android:id="@+id/btnFiltroFavoritos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:paddingVertical="6dp"
+                            android:paddingHorizontal="14dp"
+                            android:background="#1B1B22"
+                            android:textColor="#FF4081"
+                            android:textSize="12sp"
+                            android:text="❤️ FAVORITOS" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1E1E26" />
+
+                <TextView
+                    android:id="@+id/tvArmarioSubtitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="14dp"
+                    android:paddingTop="6dp"
+                    android:textColor="#888899"
+                    android:textSize="11sp"
+                    android:text="Toca una prenda para abrir su ficha completa" />
+
+                <!-- Cuadrícula de prendas -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerPrendas"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="6dp"
+                    android:clipToPadding="false"
+                    tools:listitem="@layout/item_prenda" />
+
+            </LinearLayout>
+
+            <!-- Botón flotante para registrar/agregar nueva prenda -->
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/fabAgregarPrenda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="16dp"
+                android:text="+ NUEVA PRENDA"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                app:backgroundTint="#FFFFFF"
+                app:elevation="6dp" />
+
+        </RelativeLayout>
+
+        <!-- ── VISTA 3: PANTALLA "CONFIRMAR PRENDA" (FIGMA COMPLETO) ── -->
+        <ScrollView
+            android:id="@+id/viewConfirmarPrenda"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0A0A0C"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Barra superior de Confirmar Prenda con botón volver < -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/btnVolverDeConfirmar"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="#16161D"
+                        android:gravity="center"
+                        android:text="←"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CLOSET-SCAN"
+                            android:letterSpacing="0.15"
+                            android:fontFamily="serif"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tvTituloConfirmar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="FICHA DE PRENDA"
+                            android:letterSpacing="0.1"
+                            android:textColor="#888899"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="36dp"
+                        android:layout_height="36dp" />
+
+                </LinearLayout>
+
+                <!-- Marco grande para foto/silueta PNG de la prenda -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    app:cardBackgroundColor="#13131A"
+                    app:cardCornerRadius="8dp"
+                    app:strokeColor="#2A2A38"
+                    app:strokeWidth="1.5dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imgFotoFichaReal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvFotoFichaTexto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-black"
+                            android:letterSpacing="0.1"
+                            android:text="[ VISTA DE PRENDA RECORTADA ]"
+                            android:textColor="#555566"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvColorBadgeFicha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_margin="12dp"
+                            android:background="#1B1B24"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="Color: Blanco"
+                            android:textColor="#CCCCCC"
+                            android:textSize="11sp" />
+
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Botón Quitar Fondo a la Prenda con IA -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnQuitarFondoPrenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="🪄 QUITAR FONDO A LA PRENDA (IA)"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.05"
+                    app:backgroundTint="#252538"
+                    app:cornerRadius="6dp"
+                    app:strokeColor="#FFFFFF"
+                    app:strokeWidth="1dp" />
+
+                <!-- Nombre editable de la prenda -->
+                <EditText
+                    android:id="@+id/etNombreFicha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="#14141A"
+                    android:padding="12dp"
+                    android:hint="Nombre de la prenda"
+                    android:textColorHint="#666675"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- 3 Píldoras centrales como en Figma -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/pillCategoria"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:background="#161622"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="SUPERIOR"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/pillMaterial"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:background="#161622"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="ALGODÓN"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/pillOcasión"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#161622"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="CASUAL"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- Tarjeta Selector 1: Categoría (Desplegable) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    app:cardBackgroundColor="#13131A"
+                    app:cardCornerRadius="8dp"
+                    app:strokeColor="#2A2A38"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CATEGORÍA"
+                            android:textColor="#888899"
+                            android:textSize="10sp"
+                            android:letterSpacing="0.08" />
+
+                        <Spinner
+                            android:id="@+id/spinnerCategoriaFicha"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="4dp"
+                            android:background="#1B1B24" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Tarjeta Selector 2: Ocasión / Estilo (Desplegable) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="#13131A"
+                    app:cardCornerRadius="8dp"
+                    app:strokeColor="#2A2A38"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OCASIÓN / ESTILO"
+                            android:textColor="#888899"
+                            android:textSize="10sp"
+                            android:letterSpacing="0.08" />
+
+                        <Spinner
+                            android:id="@+id/spinnerEstiloFicha"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="4dp"
+                            android:background="#1B1B24" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Tarjeta Selector 3: Material / Tejido (Desplegable) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="#13131A"
+                    app:cardCornerRadius="8dp"
+                    app:strokeColor="#2A2A38"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MATERIAL / TEJIDO"
+                            android:textColor="#888899"
+                            android:textSize="10sp"
+                            android:letterSpacing="0.08" />
+
+                        <Spinner
+                            android:id="@+id/spinnerMaterialFicha"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="4dp"
+                            android:background="#1B1B24" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Botón Principal: GUARDAR EN MI ARMARIO (Figma) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGuardarFicha"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="20dp"
+                    android:text="GUARDAR EN MI ARMARIO"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:textColor="#000000"
+                    app:backgroundTint="#FFFFFF"
+                    app:cornerRadius="26dp" />
+
+                <!-- Botón de acción: Probar en el Vestier -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnProbarVestierDesdeFicha"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:text="🎭 PROBAR EN EL VESTIER"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#1D1D28"
+                    app:cornerRadius="24dp"
+                    app:strokeColor="#FFFFFF"
+                    app:strokeWidth="1dp" />
+
+                <!-- Botón de peligro: ELIMINAR PRENDA -->
+                <TextView
+                    android:id="@+id/btnEliminarFicha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:paddingVertical="10dp"
+                    android:gravity="center"
+                    android:text="Eliminar esta prenda del armario"
+                    android:textColor="#E11D48"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ── VISTA 4: ESCÁNER CON CAMERAX (NOIR BLANCO Y NEGRO) ── -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/viewEscaner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0A0A0C"
+            android:visibility="gone">
+
+            <!-- 1) Visor de Cámara CameraX -->
+            <androidx.camera.view.PreviewView
+                android:id="@+id/previewViewEscaner"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 2) Barra superior del Escáner (Flash) -->
+            <LinearLayout
+                android:id="@+id/barraSuperiorEscaner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end|center_vertical"
+                android:padding="16dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/btnFlashEscaner"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="#88000000"
+                    android:gravity="center"
+                    android:text="⚡"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!-- 3) Guía de Encuadre: Marco punteado blanco con esquinas sólidas -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/marco_encuadre"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/barraInferiorEscaner"
+                app:layout_constraintDimensionRatio="3:4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/barraSuperiorEscaner"
+                app:layout_constraintVertical_bias="0.35"
+                app:layout_constraintWidth_percent="0.82">
+
+                <!-- Borde punteado blanco -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_guia_encuadre"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Esquina superior izquierda -->
+                <View
+                    android:layout_width="26dp"
+                    android:layout_height="3dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="26dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Esquina superior derecha -->
+                <View
+                    android:layout_width="26dp"
+                    android:layout_height="3dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="26dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Esquina inferior izquierda -->
+                <View
+                    android:layout_width="26dp"
+                    android:layout_height="3dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="26dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <!-- Esquina inferior derecha -->
+                <View
+                    android:layout_width="26dp"
+                    android:layout_height="3dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="26dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Etiqueta centrada -->
+            <TextView
+                android:id="@+id/tvEtiquetaEncuadre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#88000000"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="6dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Centra la prenda aquí"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/marco_encuadre" />
+
+            <!-- 4) Controles Inferiores: Galería, Disparador y Girar Cámara -->
+            <LinearLayout
+                android:id="@+id/barraInferiorEscaner"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="#88000000"
+                android:paddingHorizontal="32dp"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <!-- Botón Galería -->
+                <TextView
+                    android:id="@+id/btnGaleriaEscaner"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="#22FFFFFF"
+                    android:gravity="center"
+                    android:text="🖼️"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <!-- Disparador Circular Blanco -->
+                <FrameLayout
+                    android:id="@+id/btnDisparadorEscaner"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <View
+                        android:layout_width="76dp"
+                        android:layout_height="76dp"
+                        android:background="@drawable/bg_disparador_anillo" />
+
+                    <View
+                        android:layout_width="58dp"
+                        android:layout_height="58dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_disparador_relleno" />
+
+                </FrameLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <!-- Botón Girar Cámara -->
+                <TextView
+                    android:id="@+id/btnGirarCamaraEscaner"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="#22FFFFFF"
+                    android:gravity="center"
+                    android:text="🔄"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- ── VISTA 5: VESTIER DIGITAL INTERACTIVO (OPCIÓN A) ── -->
+        <LinearLayout
+            android:id="@+id/viewVestier"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#0A0A0C"
+            android:paddingHorizontal="14dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:visibility="gone">
+
+            <!-- Barra Superior del Vestier: Título, Afinidad y Limpiar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="VESTIER DIGITAL"
+                    android:fontFamily="serif"
+                    android:letterSpacing="0.12"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvVestierAfinidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#161622"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:text="AFINIDAD: 100%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/btnVestierLimpiar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✕ Limpiar"
+                    android:textColor="#888899"
+                    android:textSize="12sp"
+                    android:padding="4dp" />
+
+                <TextView
+                    android:id="@+id/btnVestierHistorial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="#242438"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:text="🕒 Historial"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <!-- 1. Lienzo Central Dividido: Usuario/Modelo a la Izquierda y Outfit a la Derecha -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#101016"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="#22222E"
+                app:strokeWidth="1.5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <!-- Columna Izquierda: TU MODELO / FOTO DEL USUARIO (44% de ancho) -->
+                    <FrameLayout
+                        android:id="@+id/frameUsuarioModelo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="44"
+                        android:background="#0A0A10">
+
+                        <ImageView
+                            android:id="@+id/imgFotoUsuarioVestier"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerInside"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_silueta_humana" />
+
+                        <!-- Badge superior indicador -->
+                        <TextView
+                            android:id="@+id/tvBadgeUsuario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:background="#AA0D0D14"
+                            android:paddingHorizontal="6dp"
+                            android:paddingVertical="3dp"
+                            android:text="TU SILUETA"
+                            android:textColor="#CCCCCC"
+                            android:textSize="9sp" />
+
+                        <!-- Botón cambiar/subir foto del usuario -->
+                        <TextView
+                            android:id="@+id/btnCambiarFotoUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:background="#CC1B1B26"
+                            android:gravity="center"
+                            android:paddingVertical="8dp"
+                            android:text="📷 MI FOTO"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <!-- Botón quitar foto y volver a silueta -->
+                        <TextView
+                            android:id="@+id/btnQuitarFotoUsuario"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:layout_gravity="top|end"
+                            android:layout_margin="6dp"
+                            android:background="#22FFFFFF"
+                            android:gravity="center"
+                            android:text="✕"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+                    <!-- Divisor Central Vertical -->
+                    <View
+                        android:layout_width="1.5dp"
+                        android:layout_height="match_parent"
+                        android:background="#1E1E28" />
+
+                    <!-- Columna Derecha: OUTFIT SELECCIONADO EN 3 CAPAS (56% de ancho) -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="56"
+                        android:orientation="vertical">
+
+                        <!-- Capa 1: Superior (44% alto) -->
+                        <FrameLayout
+                            android:id="@+id/frameCapaSuperior"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="44"
+                            android:background="#0D0D14">
+
+                            <ImageView
+                                android:id="@+id/imgVestierSuperior"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerInside"
+                                android:padding="6dp"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/tvVestierPlaceholderSuperior"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="[ + SUPERIOR ]"
+                                android:fontFamily="sans-serif-medium"
+                                android:letterSpacing="0.08"
+                                android:textColor="#555566"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/btnQuitarSuperior"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="4dp"
+                                android:background="#22FFFFFF"
+                                android:gravity="center"
+                                android:text="✕"
+                                android:textColor="#FFFFFF"
+                                android:textSize="11sp"
+                                android:visibility="gone" />
+
+                        </FrameLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#1E1E28" />
+
+                        <!-- Capa 2: Inferior (36% alto) -->
+                        <FrameLayout
+                            android:id="@+id/frameCapaInferior"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="36"
+                            android:background="#0D0D14">
+
+                            <ImageView
+                                android:id="@+id/imgVestierInferior"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerInside"
+                                android:padding="6dp"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/tvVestierPlaceholderInferior"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="[ + INFERIOR ]"
+                                android:fontFamily="sans-serif-medium"
+                                android:letterSpacing="0.08"
+                                android:textColor="#555566"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/btnQuitarInferior"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="4dp"
+                                android:background="#22FFFFFF"
+                                android:gravity="center"
+                                android:text="✕"
+                                android:textColor="#FFFFFF"
+                                android:textSize="11sp"
+                                android:visibility="gone" />
+
+                        </FrameLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#1E1E28" />
+
+                        <!-- Capa 3: Calzado (20% alto) -->
+                        <FrameLayout
+                            android:id="@+id/frameCapaCalzado"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="20"
+                            android:background="#0D0D14">
+
+                            <ImageView
+                                android:id="@+id/imgVestierCalzado"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerInside"
+                                android:padding="4dp"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/tvVestierPlaceholderCalzado"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="[ + CALZADO ]"
+                                android:fontFamily="sans-serif-medium"
+                                android:letterSpacing="0.08"
+                                android:textColor="#555566"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/btnQuitarCalzado"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="4dp"
+                                android:background="#22FFFFFF"
+                                android:gravity="center"
+                                android:text="✕"
+                                android:textColor="#FFFFFF"
+                                android:textSize="11sp"
+                                android:visibility="gone" />
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 2. Pestañas de Selección de Categoría para Probar -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnTabVestierSuperior"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:paddingHorizontal="14dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="#FFFFFF"
+                        android:gravity="center"
+                        android:text="SUPERIOR"
+                        android:textColor="#000000"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnTabVestierInferior"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:paddingHorizontal="14dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="#1B1B22"
+                        android:gravity="center"
+                        android:text="INFERIOR"
+                        android:textColor="#CCCCCC"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/btnTabVestierCalzado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:paddingHorizontal="14dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="#1B1B22"
+                        android:gravity="center"
+                        android:text="CALZADO"
+                        android:textColor="#CCCCCC"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/btnTabVestierAbrigo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:paddingHorizontal="14dp"
+                        android:background="#1B1B22"
+                        android:gravity="center"
+                        android:text="ABRIGOS"
+                        android:textColor="#CCCCCC"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- 3. Carrusel Horizontal de Prendas Disponibles -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/llContenedorPrendasVestier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+
+            </HorizontalScrollView>
+
+            <!-- 4. Acciones del Vestier: Aleatorio, Probar con IA y Guardar Outfit -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVestierAleatorio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="6dp"
+                    android:text="🎲 AZAR"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#161622"
+                    app:cornerRadius="22dp"
+                    app:strokeColor="#FFFFFF"
+                    app:strokeWidth="1dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnProbarConIA"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="✨ PROBAR CON IA"
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#FFFFFF"
+                    app:cornerRadius="22dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGuardarOutfit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:text="💾 GUARDAR"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    app:backgroundTint="#181824"
+                    app:cornerRadius="22dp"
+                    app:strokeColor="#333344"
+                    app:strokeWidth="1dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ── VISTA 6: ASESOR & OFERTAS ── -->
+        <!-- ── VISTA 6: ASESOR & RECOMENDACIONES (HakiForge Match) ── -->
+        <ScrollView
+            android:id="@+id/viewAsesor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0A0A10"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Header Asesor: Título y Match -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-black"
+                            android:letterSpacing="0.08"
+                            android:text="CLOSET-SCAN"
+                            android:textColor="#FFFFFF"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:letterSpacing="0.06"
+                            android:text="RECOMENDACIONES &amp; TIENDA"
+                            android:textColor="#888899"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <!-- Botón para sugerir otro outfit al azar -->
+                    <TextView
+                        android:id="@+id/btnRefrescarAsesor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:background="#161620"
+                        android:gravity="center"
+                        android:paddingHorizontal="12dp"
+                        android:text="🔄 Otro Look"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- SECCIÓN 1: Outfit Sugerido de Hoy -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="Outfit Sugerido de Hoy"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15.5sp" />
+
+                        <TextView
+                            android:id="@+id/tvSubtituloClimaAsesor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Basado en tu estilo y clima actual"
+                            android:textColor="#888899"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <!-- Badge Afinidad Estilo Noir (Blanco y Negro) -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="5dp">
+
+                        <TextView
+                            android:id="@+id/tvBadgePorcentajeAsesor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-black"
+                            android:text="95%"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="Afinidad Estilo"
+                            android:textColor="#333333"
+                            android:textSize="8.5sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Tarjeta Principal del Outfit Sugerido (Estilo Noir) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="#121218"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Foto / Preview del Outfit -->
+                        <FrameLayout
+                            android:layout_width="125dp"
+                            android:layout_height="160dp"
+                            android:background="#0A0A10">
+
+                            <ImageView
+                                android:id="@+id/imgPreviewOutfitSugerido"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop" />
+
+                            <TextView
+                                android:id="@+id/tvPlaceholderOutfitSugerido"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="sans-serif-black"
+                                android:text="✦ LOOK"
+                                android:textColor="#444455"
+                                android:textSize="14sp" />
+                        </FrameLayout>
+
+                        <!-- Lista de Prendas sugeridas de tu armario -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <!-- Prenda 1: Superior -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:background="#1E1E28"
+                                    android:gravity="center"
+                                    android:text="✓"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="9sp" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvSugeridoSupNombre"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:fontFamily="sans-serif-bold"
+                                        android:maxLines="1"
+                                        android:text="Polo Marino"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Tu armario"
+                                        android:textColor="#888899"
+                                        android:textSize="9.5sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!-- Prenda 2: Inferior -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:background="#1E1E28"
+                                    android:gravity="center"
+                                    android:text="✓"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="9sp" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvSugeridoInfNombre"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:fontFamily="sans-serif-bold"
+                                        android:maxLines="1"
+                                        android:text="Pantalón Caqui"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Tu armario"
+                                        android:textColor="#888899"
+                                        android:textSize="9.5sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!-- Prenda 3: Calzado -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:background="#1E1E28"
+                                    android:gravity="center"
+                                    android:text="✓"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="9sp" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvSugeridoCalNombre"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:fontFamily="sans-serif-bold"
+                                        android:maxLines="1"
+                                        android:text="Tenis Blancos"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Tu armario"
+                                        android:textColor="#888899"
+                                        android:textSize="9.5sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Botón para probar este outfit sugerido directamente en el Vestier (Noir Blanco) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnProbarLookEnVestier"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="14dp"
+                        android:backgroundTint="#FFFFFF"
+                        android:fontFamily="sans-serif-bold"
+                        android:letterSpacing="0.04"
+                        android:text="PROBAR LOOK EN VESTIER"
+                        android:textColor="#000000"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- SECCIÓN 2: Completa tu Look (Ofertas de Tiendas) -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="Completa tu Look"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15.5sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Ofertas en tiendas que combinan con tu ropa"
+                    android:textColor="#888899"
+                    android:textSize="11sp" />
+
+                <!-- Carrusel Horizontal de Ofertas de Tiendas -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/llContenedorOfertasTiendas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ── MODAL RESULTADO VIRTUAL TRY-ON (IA) ── -->
+        <FrameLayout
+            android:id="@+id/modalVirtualTryOn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F008080C"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="#12121A"
+                app:cardCornerRadius="14dp"
+                app:strokeColor="#FFFFFF"
+                app:strokeWidth="1.5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <!-- Título y botón cerrar -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="✨ TU LOOK"
+                            android:fontFamily="serif"
+                            android:letterSpacing="0.12"
+                            android:textColor="#FFFFFF"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnCerrarModalTryOn"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="#1B1B26"
+                            android:gravity="center"
+                            android:text="✕"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <!-- Marco de Imagen Ampliado del Look Generado -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="480dp"
+                        android:layout_marginTop="10dp"
+                        app:cardBackgroundColor="#050508"
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="#2A2A38"
+                        app:strokeWidth="1dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/imgResultadoTryOn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="matrix" />
+
+                            <!-- Botón Flotante Comparador Antes / Después -->
+                            <TextView
+                                android:id="@+id/btnCompararAntesDespues"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|start"
+                                android:layout_margin="12dp"
+                                android:background="#E6151522"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:fontFamily="sans-serif-bold"
+                                android:paddingHorizontal="12dp"
+                                android:paddingVertical="7dp"
+                                android:text="👁️ MANTÉN PARA VER ANTES"
+                                android:textColor="#FFFFFF"
+                                android:textSize="10.5sp" />
+
+                            <!-- Badge Estado de Comparación -->
+                            <TextView
+                                android:id="@+id/tvBadgeEstadoComparacion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="12dp"
+                                android:background="#CC000000"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="5dp"
+                                android:text="✨ LOOK IA"
+                                android:textColor="#80FF80"
+                                android:textSize="9.5sp"
+                                android:fontFamily="sans-serif-bold" />
+
+                            <!-- Indicador de Zoom táctil -->
+                            <TextView
+                                android:id="@+id/tvHintZoom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|end"
+                                android:layout_margin="12dp"
+                                android:background="#B3000000"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="4dp"
+                                android:text="🔍 Pellizca para Zoom"
+                                android:textColor="#CCCCCC"
+                                android:textSize="9.5sp" />
+
+                            <!-- Barra de análisis IA: visible durante carga -->
+                            <LinearLayout
+                                android:id="@+id/llProgresoIA"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#CC0A0A10"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="16dp"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="✦  ANALIZANDO TU LOOK"
+                                    android:fontFamily="serif"
+                                    android:letterSpacing="0.1"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvProgresoTexto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Iniciando..."
+                                    android:textColor="#AAAAAA"
+                                    android:textSize="12sp" />
+
+                                <ProgressBar
+                                    android:id="@+id/progressBarIA"
+                                    style="@android:style/Widget.ProgressBar.Horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="14dp"
+                                    android:max="100"
+                                    android:progress="0"
+                                    android:progressTint="#FFFFFF" />
+
+                                <TextView
+                                    android:id="@+id/tvPorcentajeIA"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp"
+                                    android:text="0%"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <!-- Contenedor resultado oculto para no tapar la foto -->
+                            <LinearLayout
+                                android:id="@+id/llResultadoIA"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:id="@+id/tvDetallePrendasTryOn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/tvScoreTryOn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone" />
+
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Botones de Acción dentro del Modal -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnGuardarLookTryOn"
+                                android:layout_width="0dp"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="6dp"
+                                android:text="💾 GUARDAR EN HISTORIAL"
+                                android:textColor="#000000"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                app:backgroundTint="#FFFFFF"
+                                app:cornerRadius="22dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnExportarGaleriaTryOn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="44dp"
+                                android:text="📥 GALERÍA"
+                                android:textColor="#FFFFFF"
+                                android:textSize="11sp"
+                                app:backgroundTint="#1B1B26"
+                                app:cornerRadius="22dp"
+                                app:strokeColor="#FFFFFF"
+                                app:strokeWidth="1dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnVerHistorialTryOn"
+                                android:layout_width="0dp"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="6dp"
+                                android:text="🕒 VER HISTORIAL"
+                                android:textColor="#FFFFFF"
+                                android:textSize="11sp"
+                                app:backgroundTint="#242436"
+                                app:cornerRadius="22dp"
+                                app:strokeColor="#FFFFFF"
+                                app:strokeWidth="1dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnCompartirLookTryOn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="44dp"
+                                android:text="↗️ COMPARTIR"
+                                android:textColor="#FFFFFF"
+                                android:textSize="11sp"
+                                app:backgroundTint="#1B1B26"
+                                app:cornerRadius="22dp"
+                                app:strokeColor="#FFFFFF"
+                                app:strokeWidth="1dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </FrameLayout>
+
+        <!-- MODAL 4: AJUSTAR Y ENCUADRAR MI FOTO (ZOOM Y CENTRADO) -->
+        <FrameLayout
+            android:id="@+id/modalAjustarFotoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EE000000"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="12dp"
+                app:cardBackgroundColor="#12121A"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#FFFFFF"
+                app:strokeWidth="1.5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📐 ENCUADRAR TU FOTO"
+                            android:fontFamily="serif"
+                            android:letterSpacing="0.1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnCerrarModalAjustarFoto"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:background="#1B1B26"
+                            android:gravity="center"
+                            android:text="✕"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Acerca y centra tu torso para que la IA vista tu cuerpo perfecto."
+                        android:textColor="#AAAAAA"
+                        android:textSize="11sp" />
+
+                    <!-- Contenedor con marco de proporción 3:4 -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:layout_marginTop="10dp"
+                        app:cardBackgroundColor="#000000"
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="#444455"
+                        app:strokeWidth="1dp">
+
+                        <FrameLayout
+                            android:id="@+id/frameRecorteGuia"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/imgAjustarFotoPreview"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="matrix" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#15FFFFFF" />
+
+                            <TextView
+                                android:id="@+id/tvZoomNivel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|start"
+                                android:layout_margin="8dp"
+                                android:background="#99000000"
+                                android:paddingHorizontal="6dp"
+                                android:paddingVertical="2dp"
+                                android:text="Zoom: 1.0x"
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp" />
+                        </FrameLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Controles de Ajuste (Zoom y Posición) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/btnZoomMenos"
+                            android:layout_width="44dp"
+                            android:layout_height="38dp"
+                            android:background="#1E1E2C"
+                            android:gravity="center"
+                            android:text="🔍 -"
+                            android:textColor="#FFFFFF"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnZoomMas"
+                            android:layout_width="44dp"
+                            android:layout_height="38dp"
+                            android:layout_marginStart="8dp"
+                            android:background="#1E1E2C"
+                            android:gravity="center"
+                            android:text="🔍 +"
+                            android:textColor="#FFFFFF"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnMoverArriba"
+                            android:layout_width="44dp"
+                            android:layout_height="38dp"
+                            android:layout_marginStart="16dp"
+                            android:background="#1E1E2C"
+                            android:gravity="center"
+                            android:text="▲"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/btnMoverAbajo"
+                            android:layout_width="44dp"
+                            android:layout_height="38dp"
+                            android:layout_marginStart="8dp"
+                            android:background="#1E1E2C"
+                            android:gravity="center"
+                            android:text="▼"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/btnCentrarReset"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:layout_marginStart="12dp"
+                            android:background="#1E1E2C"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:text="↺ Centrar"
+                            android:textColor="#CCCCCC"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <!-- Botón Quitar Fondo con IA -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnQuitarFondoFoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="12dp"
+                        android:text="🪄 QUITAR FONDO DEL CUARTO (IA)"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#242438"
+                        app:cornerRadius="22dp"
+                        app:strokeColor="#FFFFFF"
+                        app:strokeWidth="1dp" />
+
+                    <!-- Botón Confirmar -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnConfirmarFotoAjustada"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:text="✨ ME VEO GENIAL (GUARDAR EN VESTIER)"
+                        android:textColor="#000000"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#FFFFFF"
+                        app:cornerRadius="24dp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+
+        <!-- MODAL 5: HISTORIAL DE LOOKS GENERADOS -->
+        <FrameLayout
+            android:id="@+id/modalHistorialLooks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EE000000"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="12dp"
+                app:cardBackgroundColor="#12121A"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#FFFFFF"
+                app:strokeWidth="1.5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="🕒 HISTORIAL DE LOOKS"
+                            android:fontFamily="serif"
+                            android:letterSpacing="0.1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnCerrarModalHistorial"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:background="#1B1B26"
+                            android:gravity="center"
+                            android:text="✕"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Tus outfits fotorrealistas generados previamente."
+                        android:textColor="#888899"
+                        android:textSize="11sp" />
+
+                    <!-- Contenedor scrollable de looks -->
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="380dp"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:id="@+id/llListaHistorialLooks"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+                    </ScrollView>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <!-- Línea divisoria blanca para la barra inferior -->
+    <View
+        android:id="@+id/dividerBottom"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="#FFFFFF" />
+
+    <!-- ═══ 3. BOTTOM NAVIGATION BAR (5 MENÚS FIGMA) ═══ -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#0D0D10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tabInicio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#0D0D10"
+            android:textColor="#888899"
+            android:textSize="10sp"
+            android:text="INICIO" />
+
+        <TextView
+            android:id="@+id/tabArmario"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#FFFFFF"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:text="ARMARIO" />
+
+        <TextView
+            android:id="@+id/tabEscaner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#0D0D10"
+            android:textColor="#888899"
+            android:textSize="10sp"
+            android:text="ESCÁNER" />
+
+        <TextView
+            android:id="@+id/tabVestier"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#0D0D10"
+            android:textColor="#888899"
+            android:textSize="10sp"
+            android:text="VESTIER" />
+
+        <TextView
+            android:id="@+id/tabAsesor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#0D0D10"
+            android:textColor="#888899"
+            android:textSize="10sp"
+            android:text="OFERTAS" />
+
+    </LinearLayout>
+
+</LinearLayout>

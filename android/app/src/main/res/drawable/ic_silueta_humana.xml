@@ -1,0 +1,48 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="400dp"
+    android:viewportWidth="200"
+    android:viewportHeight="400">
+
+    <!-- Cabeza -->
+    <path
+        android:fillColor="#3A3A4A"
+        android:pathData="M100,50m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0" />
+
+    <!-- Cuello -->
+    <path
+        android:fillColor="#2D2D3D"
+        android:pathData="M93,72h14v12h-14z" />
+
+    <!-- Torso y Hombros -->
+    <path
+        android:fillColor="#2E2E3E"
+        android:pathData="M60,95 C70,86 85,84 100,84 C115,84 130,86 140,95 C146,102 148,115 146,145 L142,205 C142,210 138,214 133,214 L67,214 C62,214 58,210 58,205 L54,145 C52,115 54,102 60,95 Z" />
+
+    <!-- Brazos -->
+    <path
+        android:fillColor="#262634"
+        android:pathData="M52,100 L44,195 C43,205 47,210 52,210 L56,200 L62,115 Z" />
+    <path
+        android:fillColor="#262634"
+        android:pathData="M148,100 L156,195 C157,205 153,210 148,210 L144,200 L138,115 Z" />
+
+    <!-- Pierna Izquierda -->
+    <path
+        android:fillColor="#282836"
+        android:pathData="M68,220 L72,340 C73,348 76,352 82,352 L94,352 C97,352 98,348 98,340 L96,220 Z" />
+
+    <!-- Pierna Derecha -->
+    <path
+        android:fillColor="#282836"
+        android:pathData="M104,220 L102,340 C102,348 103,352 106,352 L118,352 C124,352 127,348 128,340 L132,220 Z" />
+
+    <!-- Pies / Calzado silueta -->
+    <path
+        android:fillColor="#20202C"
+        android:pathData="M76,354 C72,354 68,360 70,366 L95,366 C97,366 98,360 96,354 Z" />
+    <path
+        android:fillColor="#20202C"
+        android:pathData="M104,354 C102,354 103,360 105,366 L130,366 C132,360 128,354 124,354 Z" />
+
+</vector>
