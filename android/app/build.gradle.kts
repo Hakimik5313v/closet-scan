@@ -18,12 +18,20 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("/home/Hakimik/Documentos/Obsidian/Proyectos-Personales/Closet-Scan/closetscan-release.keystore")
+            storePassword = "closetscan2026"
+            keyAlias = "closetscan"
+            keyPassword = "closetscan2026"
+        }
+    }
+
     buildTypes {
         release {
-            optimization {
-                enable = true
-                packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")
-            }
+            isMinifyEnabled = false
+            isShrinkResources = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
