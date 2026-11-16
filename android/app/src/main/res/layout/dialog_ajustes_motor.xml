@@ -108,7 +108,7 @@
                     android:layout_marginTop="4dp"
                     android:background="#0A0A14"
                     android:fontFamily="monospace"
-                    android:hint="http://192.168.1.X:8000"
+                    android:hint="http://10.0.2.2:8000"
                     android:inputType="textUri"
                     android:padding="10dp"
                     android:textColor="#FFFFFF"
@@ -158,7 +158,7 @@
                     android:background="#1A1A2A"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="3dp"
-                    android:text="$0.024/img"
+                    android:text="ALTA FIDELIDAD"
                     android:textColor="#AAAAFF"
                     android:textSize="10sp"
                     android:fontFamily="sans-serif-bold" />
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:layout_marginStart="34dp"
-                android:text="Mismo modelo IDM-VTON pero en la nube. Sin PC.\n✅ $5 gratis al registrarte  ✅ ~200 pruebas  ✅ Alta fidelidad"
+                android:text="Modelo IDM-VTON en la nube de alta fidelidad.\n✅ Servidor remoto  ✅ Inferencia GPU  ✅ Procesamiento fotorealista"
                 android:textColor="#777788"
                 android:textSize="11sp" />
 
@@ -263,7 +263,7 @@
                     android:background="#2A1A1A"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="3dp"
-                    android:text="$0.04/img"
+                    android:text="MULTIMODAL"
                     android:textColor="#FFAA66"
                     android:textSize="10sp"
                     android:fontFamily="sans-serif-bold" />
@@ -274,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:layout_marginStart="34dp"
-                android:text="Edición generativa: describe el cambio de estilo.\n✅ Cualquier pose  ✅ Cambios libres  ⚠️ No usa tu ropa exacta"
+                android:text="Edición generativa con Gemini AI.\n✅ Asesoría contextual  ✅ Adaptación estética  ✅ Análisis multimodal"
                 android:textColor="#777788"
                 android:textSize="11sp" />
 

@@ -282,8 +282,6 @@ public class MainActivity extends AppCompatActivity {
         // Observar outfits guardados para mostrarlos en INICIO
         viewModel.getOutfits().observe(this, this::actualizarOutfitsEnInicio);
 
-        viewModel.sembrarPrendasSiVacio();
-
         // Inicializar clientes de IA
         geminiClient = new GeminiApiClient();
         fashnClient = new FashnApiClient();
@@ -590,14 +588,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnMenuDatosArmario.setOnClickListener(v -> {
+            int total = todasLasPrendas != null ? todasLasPrendas.size() : 0;
             new android.app.AlertDialog.Builder(this)
-                    .setTitle("👕 Gestión de Armario")
-                    .setMessage("¿Deseas restablecer las prendas de demostración en tu armario?")
-                    .setPositiveButton("Restablecer Prendas Demo", (d, w) -> {
-                        viewModel.sembrarPrendasSiVacio();
-                        Toast.makeText(this, "Prendas de demostración verificadas", Toast.LENGTH_SHORT).show();
-                    })
-                    .setNegativeButton("Cancelar", null)
+                    .setTitle("👕 Almacenamiento Local (Room)")
+                    .setMessage("Arquitectura de Base de Datos SQLite activa.\n\n" +
+                            "• Prendas registradas en tu armario: " + total + "\n" +
+                            "• Almacenamiento: Memoria interna segura del dispositivo.\n" +
+                            "• Privacidad: 100% Offline-First sin costo de servidor.")
+                    .setPositiveButton("Aceptar", null)
                     .show();
         });
 
@@ -966,6 +964,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         fabAgregarPrenda.setOnClickListener(v -> cambiarTab("ESCANER"));
+
+        View btnEscanearPrimera = findViewById(R.id.btnEscanearPrimeraPrenda);
+        if (btnEscanearPrimera != null) {
+            btnEscanearPrimera.setOnClickListener(v -> cambiarTab("ESCANER"));
+        }
     }
 
     private void seleccionarFiltro(String categoria) {
@@ -1009,6 +1012,28 @@ public class MainActivity extends AppCompatActivity {
         }
         adapter.setLista(filtradas);
         tvArmarioSubtitulo.setText("Mostrando " + filtradas.size() + " prendas • Toca una para abrir su ficha");
+
+        View layoutVacio = findViewById(R.id.layoutVacioArmario);
+        RecyclerView recycler = findViewById(R.id.recyclerPrendas);
+        TextView tvTituloVacio = findViewById(R.id.tvTituloVacioArmario);
+        TextView tvSubtituloVacio = findViewById(R.id.tvSubtituloVacioArmario);
+
+        if (filtradas.isEmpty()) {
+            if (recycler != null) recycler.setVisibility(View.GONE);
+            if (layoutVacio != null) {
+                layoutVacio.setVisibility(View.VISIBLE);
+                if (todasLasPrendas == null || todasLasPrendas.isEmpty()) {
+                    if (tvTituloVacio != null) tvTituloVacio.setText("TU ARMARIO ESTÁ LISTO");
+                    if (tvSubtituloVacio != null) tvSubtituloVacio.setText("Digitaliza tu ropa con la cámara o añade fotos desde tu galería para comenzar a crear combinaciones.");
+                } else {
+                    if (tvTituloVacio != null) tvTituloVacio.setText("SIN RESULTADOS");
+                    if (tvSubtituloVacio != null) tvSubtituloVacio.setText("No hay prendas que coincidan con el filtro o búsqueda actual.");
+                }
+            }
+        } else {
+            if (layoutVacio != null) layoutVacio.setVisibility(View.GONE);
+            if (recycler != null) recycler.setVisibility(View.VISIBLE);
+        }
     }
 
     // ─── CONFIGURACIÓN DEL ESCÁNER (CAMERAX) ──────────────────────────────────
@@ -2074,7 +2099,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // ─── MOTOR DE EXPERIENCIA IA ───────────────────────────────────────────────
-    private static final String BRIDGE_URL = "http://192.168.1.66:8000";
+    private static final String BRIDGE_URL = "http://10.0.2.2:8000";
 
     private String getBridgeUrl() {
         return prefs != null ? prefs.getString("servidor_url", BRIDGE_URL) : BRIDGE_URL;
@@ -2098,11 +2123,11 @@ public class MainActivity extends AppCompatActivity {
         String motorConfigurado = prefs != null ? prefs.getString(PREF_MOTOR_TRYON, MOTOR_LOCAL) : MOTOR_LOCAL;
         android.widget.Button btnMotor = new android.widget.Button(this);
         if (MOTOR_REPLICATE.equals(motorConfigurado)) {
-            btnMotor.setText("Probador Virtual (Replicate IDM-VTON)\nNube de alta fidelidad • $0.024/img");
+            btnMotor.setText("Probador Virtual (IDM-VTON Cloud)\nInferencia en la nube de alta fidelidad");
         } else if (MOTOR_GEMINI.equals(motorConfigurado)) {
-            btnMotor.setText("Probador Virtual (Gemini Imagen)\nEdición generativa fotorrealista • $0.04/img");
+            btnMotor.setText("Probador Virtual (Gemini Multimodal)\nEdición generativa asistida por IA");
         } else {
-            btnMotor.setText("Probador Virtual (Servidor Local)\nIDM-VTON en tu PC • Sin costo");
+            btnMotor.setText("Probador Virtual (Motor Local)\nInferencia IDM-VTON en red");
         }
         btnMotor.setTextSize(13f);
         btnMotor.setAllCaps(false);

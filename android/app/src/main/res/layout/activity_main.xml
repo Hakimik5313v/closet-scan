@@ -430,6 +430,57 @@
 
             </LinearLayout>
 
+            <!-- Estado Vacío Armario (Empty State) -->
+            <LinearLayout
+                android:id="@+id/layoutVacioArmario"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🧥"
+                    android:textSize="56sp" />
+
+                <TextView
+                    android:id="@+id/tvTituloVacioArmario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="sans-serif-black"
+                    android:letterSpacing="0.08"
+                    android:text="TU ARMARIO ESTÁ LISTO"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvSubtituloVacioArmario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="4dp"
+                    android:text="Digitaliza tu ropa con la cámara o añade fotos desde tu galería para comenzar a crear combinaciones."
+                    android:textColor="#888899"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEscanearPrimeraPrenda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="📸 ESCANEAR MI PRIMERA PRENDA"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    app:backgroundTint="#FFFFFF"
+                    app:cornerRadius="24dp" />
+            </LinearLayout>
+
             <!-- Botón flotante para registrar/agregar nueva prenda -->
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/fabAgregarPrenda"

@@ -65,37 +65,10 @@ public class PrendaViewModel extends AndroidViewModel {
     }
 
     /**
-     * Precarga 4 prendas semilla solo si el armario está vacío.
-     * Constructor de PrendaEntity: (nombre, categoria, estilo, colorHex, colorNombre, rutaFotoOriginal, rutaFotoPng)
+     * En producción y entrega final, el armario inicia limpio para que el usuario registre sus prendas reales.
      */
     public void sembrarPrendasSiVacio() {
-        executor.execute(() -> {
-            if (db.prendaDao().contarTotalPrendas() == 0) {
-                PrendaEntity p1 = new PrendaEntity(
-                        "Camisa Oxford Blanca", "Superior", "Clásico",
-                        "#F5F0E8", "Blanco Marfil", null, null);
-                p1.material = "Algodón";
-                db.prendaDao().insertarPrenda(p1);
-
-                PrendaEntity p2 = new PrendaEntity(
-                        "Pantalón Carbón", "Inferior", "Formal",
-                        "#2E2E2E", "Grafito Oscuro", null, null);
-                p2.material = "Lana";
-                db.prendaDao().insertarPrenda(p2);
-
-                PrendaEntity p3 = new PrendaEntity(
-                        "Blazer Medianoche", "Superior", "Elegante",
-                        "#1B263B", "Azul Medianoche", null, null);
-                p3.material = "Lino";
-                db.prendaDao().insertarPrenda(p3);
-
-                PrendaEntity p4 = new PrendaEntity(
-                        "Zapatillas Champán", "Calzado", "Casual",
-                        "#D4AF37", "Oro Viejo", null, null);
-                p4.material = "Cuero";
-                db.prendaDao().insertarPrenda(p4);
-            }
-        });
+        // Armario limpio para producción y pruebas reales
     }
 
     @Override

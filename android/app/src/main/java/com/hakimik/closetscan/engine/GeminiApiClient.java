@@ -31,7 +31,7 @@ import okhttp3.Response;
 public class GeminiApiClient {
 
     private static final String BASE_URL =
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent";
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
     public interface Callback {
         void onProgress(int percentage);

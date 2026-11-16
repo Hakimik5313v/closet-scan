@@ -162,7 +162,7 @@
     </LinearLayout>
 
 
-    <!-- Botón / Tarjeta: Consola de Auditoría y Logs -->
+    <!-- Botón / Tarjeta: Consola de Auditoría y Logs (Oculto en producción) -->
     <LinearLayout
         android:id="@+id/btnMenuLogs"
         android:layout_width="match_parent"
@@ -174,7 +174,8 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="14dp">
+        android:padding="14dp"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="36dp"
@@ -314,7 +315,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-bold"
-                android:text="Datos de Armario &amp; Muestras"
+                android:text="Almacenamiento Local (SQLite)"
                 android:textColor="#FFFFFF"
                 android:textSize="13sp" />
 
@@ -322,7 +323,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Restaurar prendas demo o gestionar BD"
+                android:text="Base de datos y estado de prendas guardadas"
                 android:textColor="#777788"
                 android:textSize="11sp" />
         </LinearLayout>
@@ -347,7 +348,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="CLOSET / SCAN v1.2 • Gemini 3.5 Flash-Lite"
+        android:text="CLOSET / SCAN v1.0 • UNICOLOMBO"
         android:textColor="#555566"
         android:textSize="10sp" />
 
