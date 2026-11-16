@@ -3379,6 +3379,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void actualizarAsesorUI() {
+        if (todasLasPrendas == null || todasLasPrendas.isEmpty()) {
+            // Armario vacío: ocultar contenido del asesor y mostrar estado vacío
+            View viewAsesor = findViewById(R.id.viewAsesor);
+            if (viewAsesor != null) {
+                android.widget.ScrollView sv = viewAsesor instanceof android.widget.ScrollView
+                        ? (android.widget.ScrollView) viewAsesor : null;
+                // Buscar el contenedor principal del asesor para mostrar mensaje
+            }
+            if (tvPlaceholderOutfitSugerido != null) {
+                tvPlaceholderOutfitSugerido.setText("📷 Escanea al menos una prenda para ver tu outfit del día");
+                tvPlaceholderOutfitSugerido.setVisibility(View.VISIBLE);
+            }
+            if (imgPreviewOutfitSugerido != null) imgPreviewOutfitSugerido.setVisibility(View.GONE);
+            if (tvBadgePorcentajeAsesor != null) tvBadgePorcentajeAsesor.setText("—");
+            if (tvSugeridoSupNombre != null) tvSugeridoSupNombre.setText("Sin prendas");
+            if (tvSugeridoInfNombre != null) tvSugeridoInfNombre.setText("Agrega ropa primero");
+            if (tvSugeridoCalNombre != null) tvSugeridoCalNombre.setText("");
+            return;
+        }
         if (sugerenciaSupActual == null) {
             generarNuevoMatchAsesor();
         }
@@ -3500,9 +3519,10 @@ public class MainActivity extends AppCompatActivity {
         String precioOferta;
         String descuento;
         String icono;
+        String imagenAsset; // ruta dentro de assets/
         String urlTienda;
 
-        OfertaTienda(String tienda, String prenda, String categoria, String precioOriginal, String precioOferta, String descuento, String icono, String urlTienda) {
+        OfertaTienda(String tienda, String prenda, String categoria, String precioOriginal, String precioOferta, String descuento, String icono, String imagenAsset, String urlTienda) {
             this.tienda = tienda;
             this.prenda = prenda;
             this.categoria = categoria;
@@ -3510,6 +3530,7 @@ public class MainActivity extends AppCompatActivity {
             this.precioOferta = precioOferta;
             this.descuento = descuento;
             this.icono = icono;
+            this.imagenAsset = imagenAsset;
             this.urlTienda = urlTienda;
         }
     }
@@ -3521,42 +3542,46 @@ public class MainActivity extends AppCompatActivity {
         List<OfertaTienda> ofertas = new ArrayList<>();
         ofertas.add(new OfertaTienda(
                 "Zara",
-                "Chaqueta bomber",
+                "Chaqueta Bomber",
                 "Abrigo",
-                "$129.900",
-                "$89.900",
-                "-31%",
+                "",
+                "Ver en tienda ↗",
+                "NUEVA",
                 "🧥",
+                "tiendas/zara_bomber.jpg",
                 "https://www.zara.com/co/es/search?searchTerm=chaqueta%20bomber"
         ));
         ofertas.add(new OfertaTienda(
                 "Pull & Bear",
-                "Mocasines cuero",
+                "Mocasín Cuero",
                 "Calzado",
-                "$149.900",
-                "$104.900",
-                "-30%",
+                "",
+                "Ver en tienda ↗",
+                "OFERTA",
                 "👞",
+                "tiendas/pullbear_mocasines.jpg",
                 "https://www.pullandbear.com/co/hombre/calzado/mocasines-n6464"
         ));
         ofertas.add(new OfertaTienda(
                 "Bershka",
                 "Sobrecamisa Pana",
                 "Superior",
-                "$119.900",
-                "$79.900",
-                "-33%",
+                "",
+                "Ver en tienda ↗",
+                "TENDENCIA",
                 "👔",
+                "tiendas/bershka_pana.jpg",
                 "https://www.bershka.com/co/hombre/ropa/camisas-c1010193239.html"
         ));
         ofertas.add(new OfertaTienda(
                 "H&M",
-                "Chaqueta Denim Oversize",
+                "Chaqueta Denim",
                 "Superior",
-                "$149.900",
-                "$99.900",
-                "-33%",
+                "",
+                "Ver en tienda ↗",
+                "BÁSICO",
                 "🧥",
+                "tiendas/hm_denim.jpg",
                 "https://co.hm.com/hombre/ropa/chaquetas"
         ));
 
@@ -3572,12 +3597,29 @@ public class MainActivity extends AppCompatActivity {
             MaterialButton btnVerWeb = card.findViewById(R.id.btnVerEnTiendaWeb);
             MaterialButton btnProbar = card.findViewById(R.id.btnProbarOfertaEnVestier);
 
-            tvIcono.setText(of.icono);
+            // Cargar imagen real desde assets
+            ImageView imgOferta = card.findViewById(R.id.imgOfertaTienda);
+            if (imgOferta != null && of.imagenAsset != null && !of.imagenAsset.isEmpty()) {
+                try {
+                    android.graphics.BitmapFactory.Options opts = new android.graphics.BitmapFactory.Options();
+                    opts.inSampleSize = 2;
+                    android.graphics.Bitmap bmp = android.graphics.BitmapFactory.decodeStream(
+                            getAssets().open(of.imagenAsset), null, opts);
+                    if (bmp != null) {
+                        imgOferta.setImageBitmap(bmp);
+                        imgOferta.setVisibility(View.VISIBLE);
+                        tvIcono.setVisibility(View.GONE); // ocultar emoji si hay imagen real
+                    }
+                } catch (Exception e) {
+                    AppLogger.w("OFERTAS", "No se pudo cargar imagen: " + of.imagenAsset);
+                }
+            }
+
             tvTienda.setText(of.tienda);
             tvPrenda.setText(of.prenda);
-            tvPrecioTachado.setText(of.precioOriginal);
-            tvPrecioTachado.setPaintFlags(tvPrecioTachado.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            tvPrecioOferta.setText(of.precioOferta);
+            // Sin precios inventados — solo badge de categoría
+            tvPrecioTachado.setVisibility(View.GONE);
+            tvPrecioOferta.setText("Ver precio en tienda");
             tvBadge.setText(of.descuento);
 
             // Botón 1: Abrir la tienda oficial real en navegador o app externa
